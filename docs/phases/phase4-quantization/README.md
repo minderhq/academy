@@ -1,7 +1,7 @@
 ---
 Document ID: PHASE4-QUANTIZATION-README
 Title: "Phase 4: Quantization & Compression [4000]"
-Last Updated: 2026-10-22
+Last Updated: 2026-10-24
 Status: Complete
 Difficulty: Advanced
 Tags: ['phase', 'quantization', 'qat', 'quantization-aware-training']
@@ -90,10 +90,10 @@ graph LR
 
 | Document | Description | Time | Difficulty |
 |----------|-------------|------|------------|
-| [4101: GGUF Physics](./4100-low-bit/4101-GGUF-Physics.md) | CPU/GPU hybrid inference | 2h | Intermediate |
-| [4102: EXL2 and AWQ](./4100-low-bit/4102-EXL2-and-AWQ.md) | Extreme quantization for VRAM-only | 2h | Advanced |
-| [4103: Double Quantization](./4100-low-bit/4103-Double-Quantization.md) | BitsAndBytes 4-bit loading | 1h | Intermediate |
-| [4104: MXFP4 and NVFP4](./4100-low-bit/4104-MXFP4-and-NVFP4.md) | Microscaling 4-bit: the gpt-oss formats | 2h | Advanced |
+| [4101: GGUF Physics](./4100-low-bit/4101-GGUF-Physics.md) | CPU/GPU hybrid inference | 4h | Intermediate |
+| [4102: EXL2 and AWQ](./4100-low-bit/4102-EXL2-and-AWQ.md) | Extreme quantization for VRAM-only | 4h | Advanced |
+| [4103: Double Quantization](./4100-low-bit/4103-Double-Quantization.md) | BitsAndBytes 4-bit loading | 4h | Intermediate |
+| [4104: MXFP4 and NVFP4](./4100-low-bit/4104-MXFP4-and-NVFP4.md) | Microscaling 4-bit: the gpt-oss formats | 4h | Advanced |
 
 **What You'll Learn:**
 
@@ -115,10 +115,10 @@ graph LR
 
 | Document | Description | Time | Difficulty |
 |----------|-------------|------|------------|
-| [4201: Context Window Physics](./4200-kv-cache/4201-Context-Window-Physics.md) | OOM errors in long sequences | 3h | Advanced |
-| [4202: Speculative Decoding](./4200-kv-cache/4202-Speculative-Decoding.md) | Accelerating with draft models | 2h | Advanced |
+| [4201: Context Window Physics](./4200-kv-cache/4201-Context-Window-Physics.md) | OOM errors in long sequences | 4h | Advanced |
+| [4202: Speculative Decoding](./4200-kv-cache/4202-Speculative-Decoding.md) | Accelerating with draft models | 4h | Advanced |
 | [4204: KV-Cache Paging and Prefix Caching](./4200-kv-cache/4204-KV-Cache-Paging-and-Prefix-Caching.md) | PagedAttention blocks, prefix caching, budgeted prefill | 4h | Advanced |
-| [4203: Context Optimization](./4200-kv-cache/guides/4203-Context-Window-Optimization.md) | KV cache optimization | 2h | Intermediate |
+| [4203: Context Optimization](./4200-kv-cache/guides/4203-Context-Window-Optimization.md) | KV cache optimization | 6h | Intermediate |
 
 **What You'll Learn:**
 
@@ -138,11 +138,11 @@ graph LR
 
 | Document | Description | Time | Difficulty |
 |----------|-------------|------|------------|
-| [4301: QAT Foundations](./4300-quantization-aware-training/4301-QAT-Foundations.md) | Fake quantization & calibration | 3h | Advanced |
-| [4302: Fake Quantization](./4300-quantization-aware-training/4302-Fake-Quantization.md) | Simulated quantization during training | 2h | Advanced |
-| [4303: QAT for Transformers](./4300-quantization-aware-training/4303-QAT-for-Transformers.md) | Layer-wise quantization strategies | 3h | Advanced |
-| [4304: Low-bit QAT](./4300-quantization-aware-training/4304-Low-bit-QAT.md) | Training with 4-bit weights | 3h | Advanced |
-| [4305: Quantization Configuration](./4300-quantization-aware-training/4305-Quantization-Configuration.md) | AutoGPTQ, GPTQ, AWQ configs | 2h | Intermediate |
+| [4301: QAT Foundations](./4300-quantization-aware-training/4301-QAT-Foundations.md) | Fake quantization & calibration | 4h | Advanced |
+| [4302: Fake Quantization](./4300-quantization-aware-training/4302-Fake-Quantization.md) | Simulated quantization during training | 4h | Advanced |
+| [4303: QAT for Transformers](./4300-quantization-aware-training/4303-QAT-for-Transformers.md) | Layer-wise quantization strategies | 4h | Advanced |
+| [4304: Low-bit QAT](./4300-quantization-aware-training/4304-Low-bit-QAT.md) | Training with 4-bit weights | 4h | Advanced |
+| [4305: Quantization Configuration](./4300-quantization-aware-training/4305-Quantization-Configuration.md) | AutoGPTQ, GPTQ, AWQ configs | 4h | Intermediate |
 
 **What You'll Learn:**
 
@@ -162,10 +162,10 @@ graph LR
 
 | Document | Description | Time | Difficulty |
 |----------|-------------|------|------------|
-| [4401: GPTQ](./4400-advanced-techniques/4401-GPTQ.md) | Accurate post-training quantization | 3h | Advanced |
-| [4402: AWQ](./4400-advanced-techniques/4402-AWQ.md) | Activation-aware quantization | 3h | Advanced |
-| [4403: GGUF Format](./4400-advanced-techniques/4403-GGUF-Format.md) | llama.cpp file format and ecosystem | 2h | Intermediate |
-| [4404: EXL2 Format](./4400-advanced-techniques/4404-EXL2-Format.md) | ExLlamaV2 format for GPU inference | 2h | Intermediate |
+| [4401: GPTQ](./4400-advanced-techniques/4401-GPTQ.md) | Accurate post-training quantization | 5h | Advanced |
+| [4402: AWQ](./4400-advanced-techniques/4402-AWQ.md) | Activation-aware quantization | 5h | Advanced |
+| [4403: GGUF Format](./4400-advanced-techniques/4403-GGUF-Format.md) | llama.cpp file format and ecosystem | 5h | Intermediate |
+| [4404: EXL2 Format](./4400-advanced-techniques/4404-EXL2-Format.md) | ExLlamaV2 format for GPU inference | 5h | Intermediate |
 | [4405: Sparsity + Quantization](./4400-advanced-techniques/4405-Sparsity-Quantization.md) | Combining pruning with quantization | 4h | Advanced |
 | [4406: 1.58-bit Quantization](./4400-advanced-techniques/4406-1.58-bit-Quantization.md) | The frontier of extreme quantization | 3h | Advanced |
 | [4407: Ternary & Binary Networks](./4400-advanced-techniques/4407-Ternary-Binary.md) | {-1, 0, +1} weights | 4h | Advanced |
@@ -226,11 +226,11 @@ graph TD
 
 | Module | Reading | Practice | Total |
 |--------|---------|----------|-------|
-| 4100: Low-Bit Quantization | 9h | 4h | 13h |
-| 4200: KV Cache Optimization | 12h | 6h | 18h |
-| 4300: QAT | 12h | 8h | 20h |
-| 4400: Advanced Techniques | 18h | 12h | 30h |
-| **Total** | **51h** | **30h** | **81h** |
+| 4100: Low-Bit Quantization | 16h | 4h | 20h |
+| 4200: KV Cache Optimization | 18h | 3h | 21h |
+| 4300: QAT | 20h | 8h | 28h |
+| 4400: Advanced Techniques | 37h | 12h | 49h |
+| **Total** | **91h** | **27h** | **118h** |
 
 ---
 
@@ -545,7 +545,7 @@ After completing this phase:
 
 ---
 
-**Module Duration:** 81 hours (51 reading + 30 practice)
+**Module Duration:** 118 hours (91 reading + 27 practice)
 
 **Difficulty:** ⭐⭐⭐ Advanced
 
