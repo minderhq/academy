@@ -1,7 +1,7 @@
 ---
 Document ID: ORGANIZATION-GUIDE
 Title: "Minder Academy Organization Guide"
-Last Updated: 2026-10-22
+Last Updated: 2026-10-24
 Status: Complete
 Difficulty: Beginner
 Tags: ['maintenance', 'navigation']
@@ -12,7 +12,7 @@ Tags: ['maintenance', 'navigation']
 
 **Version:** 4.2
 
-**Last Updated:** 2026-10-22
+**Last Updated:** 2026-10-24
 
 **Purpose:** Guide for understanding and maintaining the Minder Academy documentation structure
 
@@ -25,8 +25,14 @@ Tags: ['maintenance', 'navigation']
 ```text
 Minder Academy/
 ├── README.md                          # Main project README
+├── CHANGELOG.md                       # Release changelog
 ├── LICENSE                            # MIT License
-├── prompt.txt                         # AI assistant prompt
+├── mkdocs.yml                         # Site build configuration
+├── hooks.py                           # MkDocs hooks
+├── gh_slugify.py                      # GitHub-accurate slugify
+├── pyproject.toml                     # Project metadata
+├── uv.lock                            # Locked dependencies
+├── .github/                           # CI workflows (deploy + QA)
 ├── configs/                           # Configuration files
 │   ├── docker-compose.yml
 │   ├── .env.example
@@ -35,14 +41,18 @@ Minder Academy/
 │   ├── 00-META/                      # Meta documentation
 │   ├── phases/                       # Phase documentation (33 modules)
 │   ├── learning-resources/           # Learning materials
-│   ├── experiments/                  # Experiment files (47)
+│   ├── notebooks/                    # Executable notebooks
+│   ├── volumes/                      # Print-style volumes
+│   ├── stylesheets/                  # Custom CSS
 │   ├── comparisons/                  # Comparison docs
 │   ├── use-cases/                    # Use case docs
 │   ├── industry/                     # Industry applications
-│   ├── solutions/                    # Solution docs
-│   └── diagrams/                     # Architecture diagrams
-├── experiments/                       # Experiment implementations
-└── scripts/                          # Utility scripts
+│   ├── enterprise-solutions/         # Solution docs
+│   ├── diagrams/                     # Architecture diagrams
+│   └── index.md                      # Site landing page
+├── experiments/                       # Experiment files (47)
+├── overrides/                         # Theme overrides
+└── scripts/                           # Utility scripts
 ```
 
 ---
@@ -65,15 +75,12 @@ docs/00-META/
 ├── ASSESSMENT-GUIDE.md               # Skill evaluation
 ├── ENVIRONMENT-SETUP.md              # System requirements
 ├── FAQ.md                            # Common questions
+├── ORGANIZATION-GUIDE.md             # This guide
 ├── GLOSSARY.md                       # Term definitions
+├── QA-TOOLING.md                     # QA gate fleet reference
+├── RESOURCES.md                      # External resource index
 ├── SITEMAP.md                        # Complete file listing
 ├── TROUBLESHOOTING-QUICKSTART.md     # Quick issue resolution
-├── learning-resources/
-│   ├── interactive/                  # Interactive features
-│   │   └── FLASHCARDS.md
-│   └── resources/
-│       └── EXTERNAL-RESOURCES.md
-│
 ├── assessment/                       # Phase-level assessments
 │   ├── phase1-practice.md            # Practice exercises
 │   ├── phase1-quiz.md                # Quiz questions
@@ -82,15 +89,11 @@ docs/00-META/
 │   ├── ...
 │   └── phase7-quiz.md
 │
-├── PRINTING-GUIDE.md                 # Book production guide
-├── BOOK-OUTLINE.md                   # Book content outline
-├── PRINTING-CHECKLIST.md             # Printing decisions
 │
 ├── STYLE-GUIDE.md                    # Documentation standards
 ├── DOCUMENT-TEMPLATE.md              # File template
 ├── NAVIGATION-TEMPLATE.md            # Navigation patterns
-├── CROSS-REFERENCE-GUIDELINES.md     # Linking standards
-└── METADATA-MIGRATION-TOOL.md       # Migration utilities
+└── CROSS-REFERENCE-GUIDELINES.md     # Linking standards
 ```
 
 ---
@@ -107,6 +110,7 @@ docs/phases/
 │   │   ├── 1101-Fiber-GPON-Modem.md
 │   │   ├── 1102-Star-Topology-Core.md
 │   │   ├── 1103-Jumbo-Frames-and-MTU.md
+│   │   ├── 1104-Protocol-Stack-TCP-and-DNS.md
 │   │   └── assessment/
 │   │       ├── PRACTICE.md           # Module practice
 │   │       └── QUIZ.md               # Module quiz
@@ -201,6 +205,9 @@ docs/learning-resources/
 │   ├── PROJECT-007-Production-AI-System.md
 │   └── SETUP-GUIDE.md
 │
+├── guides/                           # Career & interview guides
+├── interactive/                      # FLASHCARDS + README
+├── resources/                        # EXTERNAL-RESOURCES + README
 ├── bridges/                          # Phase transition guides
 ├── case-studies/                     # Real-world examples
 └── troubleshooting/                  # Issue resolution guides
