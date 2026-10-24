@@ -1,7 +1,7 @@
 ---
 Document ID: CONFIGS-README
 Title: "Configuration Templates"
-Last Updated: 2026-10-04
+Last Updated: 2026-10-24
 Status: Complete
 Difficulty: Beginner
 ---
@@ -18,7 +18,7 @@ server, a workstation, a NAS with Container Manager, or a cloud VM.
 |------|---------|
 | `docker-compose.yml` | Minimal self-hosted LLM stack: vLLM (GPU inference) + Qdrant (vector database), with Ollama as a commented alternative |
 | `.env.example` | Environment template for the compose file — copy to `.env` and edit |
-| `performance-testing/k6/load-test.js` | Load tests for the inference API (latency, TTFT, throughput) |
+| `performance-testing/k6/load-test.js` | Load tests for the LLM stack: vLLM inference + Qdrant search + Neo4j queries (latency, TTFT, throughput) |
 
 ## Requirements
 

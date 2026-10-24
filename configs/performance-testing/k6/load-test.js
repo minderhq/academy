@@ -215,7 +215,7 @@ export function neo4jQueryTest() {
 }
 
 // Main test scenario — set SCENARIO=chat|completion|stream|qdrant|neo4j to
-// run a single test type; default mixes all of them at random.
+// run a single test type; default mixes completion, chat, and qdrant at random.
 export default function () {
   const scenario = __ENV.SCENARIO || '';
   const tests = {
