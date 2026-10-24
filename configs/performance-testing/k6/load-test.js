@@ -39,7 +39,7 @@ export const options = {
 // Configuration (all overridable via environment)
 const BASE_URL = __ENV.BASE_URL || 'http://localhost:8000';
 const API_KEY = __ENV.API_KEY || '';
-const MODEL = __ENV.MODEL || 'Qwen/Qwen2.5-7B-Instruct-AWQ';
+const MODEL = __ENV.MODEL || 'Qwen/Qwen3-8B-AWQ';
 const QDRANT_URL = __ENV.QDRANT_URL || 'http://localhost:6333';
 const NEO4J_URL = __ENV.NEO4J_URL || 'http://localhost:7474';
 
