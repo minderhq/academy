@@ -1,7 +1,7 @@
 ---
 Document ID: FAQ
 Title: "Minder Academy FAQ"
-Last Updated: 2026-10-14
+Last Updated: 2026-10-24
 Status: Complete
 Difficulty: Beginner
 Tags: ['faq', 'llm', 'llmops']
@@ -213,7 +213,7 @@ Use **[PROGRESS-TRACKER.md](PROGRESS-TRACKER.md)** to:
 **Labs (LAB-XXX):**
 
 - Hands-on practical exercises
-- 2-10 hours each
+- 1-12 hours each
 - Build complete systems
 - Capstone projects
 - Lead to badges
