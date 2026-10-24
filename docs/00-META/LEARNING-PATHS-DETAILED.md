@@ -237,7 +237,7 @@ Checkpoint: Deep understanding of transformers
 
 ### Phase 4: Quantization & Compression (Month 5-6)
 
-**Volume 4: Quantization & Optimization** (30-35 hours)
+**Volume 4: Quantization & Optimization** (35-40 hours)
 
 ```text
 Week 1-2: Low-Bit Quantization
