@@ -486,7 +486,7 @@ Minder Academy/docs/
 │   ├── IND-002-Finance-AI-Applications.md
 │   └── IND-003-Manufacturing-AI.md
 │
-├── solutions/                   # End-to-end implementation guides
+├── enterprise-solutions/        # End-to-end implementation guides
 │   ├── README.md
 │   ├── SOL-001-Enterprise-Knowledge-Base.md
 │   └── SOL-002-Industry-Solution.md

@@ -666,11 +666,11 @@ if __name__ == "__main__":
 
 | Category | Files | Percentage |
 |----------|-----:|----------:|
-| Phase Docs | 111 | 24% |
-| Learning Resources | 60 | 12% |
-| Experiments | 44 | 10% |
-| Meta Docs | 30 | 6% |
-| Reference | 220 | 48% |
+| Phase Docs | 293 | 52% |
+| Learning Resources | 165 | 29% |
+| Experiments | 48 | 8% |
+| Meta Docs | 34 | 6% |
+| Reference | 28 | 5% |
 
 ---
 
