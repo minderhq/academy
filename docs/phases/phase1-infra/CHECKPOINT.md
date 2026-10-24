@@ -1,7 +1,7 @@
 ---
 Document ID: PHASE1-CHECKPOINT
 Title: "Progress Checkpoints: Phase 1 - Infrastructure Fabric"
-Last Updated: 2026-10-09
+Last Updated: 2026-10-24
 Status: Complete
 Difficulty: Intermediate
 Tags: ['checkpoint', 'infrastructure', 'gpu', 'networking']
@@ -41,7 +41,7 @@ After completing Phase 1, you will:
 
 ### Module 1100: Network Fundamentals for LLM Infrastructure (Optional)
 
-**After completing 1101-1103, you should:**
+**After completing 1101-1104, you should:**
 
 **Knowledge Check:**
 
@@ -147,7 +147,7 @@ After completing Phase 1, you will:
 
 ### Module 1400: LLMOps (Required)
 
-**After completing 1401-1402, 1403-1404, you should:**
+**After completing 1401-1405, you should:**
 
 **Knowledge Check:**
 
