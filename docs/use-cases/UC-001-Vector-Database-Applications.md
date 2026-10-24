@@ -1,7 +1,7 @@
 ---
 Document ID: UC-001
 Title: "UC-001: Vector Database Practical Use Cases"
-Last Updated: 2026-10-08
+Last Updated: 2026-10-24
 Status: Complete
 Difficulty: Intermediate
 Tags: ['use-case', 'vector-db', 'rag']
@@ -685,7 +685,7 @@ START
   ├─ How many items?
   │   ├─ < 10K → Use FAISS/NumPy (In-memory)
   │   ├─ 10K - 10M → Use Vector DB (Qdrant/Weaviate)
-  │   └─ > 10M → Use Pinecloud/Managed Service
+  │   └─ > 10M → Use Pinecone/Managed Service
   │
   └─ END
 ```
