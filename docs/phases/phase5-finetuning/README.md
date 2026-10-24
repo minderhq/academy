@@ -1,7 +1,7 @@
 ---
 Document ID: PHASE5-FINETUNING-README
 Title: "Phase 5: Fine-Tuning & Alignment [5000]"
-Last Updated: 2026-10-22
+Last Updated: 2026-10-24
 Status: Complete
 Difficulty: Advanced
 Tags: ['phase', 'finetuning', 'training', 'distributed']
@@ -137,10 +137,10 @@ Recommended Hardware:
 
 | Document | Description | Time | Difficulty |
 |----------|-------------|------|------------|
-| [5101: LoRA (Low-Rank Adaptation) Logic](./5100-peft/5101-LoRA-Logic.md) | Modifying without retraining 7B params | 3h | Intermediate |
-| [5102: QLoRA Pipelines](./5100-peft/5102-QLoRA-Pipelines.md) | 4-bit fine-tuning on 11GB-class GPU | 3h | Intermediate |
-| [5103: Adapters](./5100-peft/5103-Adapters.md) | Adapter layers and bottleneck | 2h | Intermediate |
-| [5104: LoRA Implementation](./5100-peft/guides/5104-LoRA-Implementation-Guide.md) | Complete implementation guide | 3h | Advanced |
+| [5101: LoRA (Low-Rank Adaptation) Logic](./5100-peft/5101-LoRA-Logic.md) | Modifying without retraining 7B params | 5h | Intermediate |
+| [5102: QLoRA Pipelines](./5100-peft/5102-QLoRA-Pipelines.md) | 4-bit fine-tuning on 11GB-class GPU | 5h | Intermediate |
+| [5103: Adapters](./5100-peft/5103-Adapters.md) | Adapter layers and bottleneck | 5h | Intermediate |
+| [5104: LoRA Implementation](./5100-peft/guides/5104-LoRA-Implementation-Guide.md) | Complete implementation guide | 5h | Advanced |
 | [5105: Model Merging](./5100-peft/5105-Model-Merging.md) | Task vectors, TIES, DARE, soups | 3h | Advanced |
 
 **What You'll Learn:**
@@ -164,9 +164,9 @@ Recommended Hardware:
 | Document | Description | Time | Difficulty |
 |----------|-------------|------|------------|
 | [5201: DPO (Direct Preference Optimization) Theory](./5200-alignment/5201-DPO-Theory.md) | Direct Preference Optimization | 4h | Advanced |
-| [5202: Alignment Orchestration](./5200-alignment/5202-Alignment-Orchestration.md) | Reward vs DPO | 3h | Advanced |
+| [5202: Alignment Orchestration](./5200-alignment/5202-Alignment-Orchestration.md) | Reward vs DPO | 4h | Advanced |
 | [5203: RLHF](./5200-alignment/5203-RLHF.md) | Reinforcement Learning from Human Feedback | 4h | Advanced |
-| [5204: Preference Dataset Creation](./5200-alignment/5204-Preference-Dataset-Creation.md) | Building preference pairs | 2h | Intermediate |
+| [5204: Preference Dataset Creation](./5200-alignment/5204-Preference-Dataset-Creation.md) | Building preference pairs | 4h | Intermediate |
 | [5205: GRPO and RLVR](./5200-alignment/5205-GRPO-RLVR.md) | Group-relative policy optimization with verifiable rewards | 4h | Advanced |
 | [5206: Best-of-N and Rejection Sampling](./5200-alignment/5206-Best-of-N-and-Rejection-Sampling.md) | Inference-time reranking, overoptimization, and RSFT | 4h | Advanced |
 
@@ -193,9 +193,9 @@ Recommended Hardware:
 
 | Document | Description | Time | Difficulty |
 |----------|-------------|------|------------|
-| [5301: Knowledge Distillation](./5300-synthetic/5301-Knowledge-Distillation.md) | Small models from big model outputs | 3h | Advanced |
-| [5302: Distributed Training](./5300-synthetic/5302-Distributed-Training.md) | Distributed data generation | 3h | Advanced |
-| [5303: Federated Learning](./5300-synthetic/5303-Federated-Learning.md) | Privacy-preserving training | 3h | Advanced |
+| [5301: Knowledge Distillation](./5300-synthetic/5301-Knowledge-Distillation.md) | Small models from big model outputs | 4h | Advanced |
+| [5302: Distributed Training](./5300-synthetic/5302-Distributed-Training.md) | Distributed data generation | 4h | Advanced |
+| [5303: Federated Learning](./5300-synthetic/5303-Federated-Learning.md) | Privacy-preserving training | 4h | Advanced |
 | [5304: Self-Instruct and Model Collapse](./5300-synthetic/5304-Self-Instruct-and-Model-Collapse.md) | Instruction bootstrap and the recursion's collapse tax | 4h | Advanced |
 
 **What You'll Learn:**
@@ -221,7 +221,7 @@ Recommended Hardware:
 |----------|-------------|------|------------|
 | [5401: Data Parallelism](./5400-distributed-training/5401-Data-Parallelism.md) | Multi-GPU training basics | 3h | Intermediate |
 | [5402: Model Parallelism](./5400-distributed-training/5402-Model-Parallelism.md) | Pipeline and tensor parallelism | 4h | Advanced |
-| [5403: Mixed Precision](./5400-distributed-training/5403-Mixed-Precision.md) | FP16/BF16 training strategies | 2h | Intermediate |
+| [5403: Mixed Precision](./5400-distributed-training/5403-Mixed-Precision.md) | FP16/BF16 training strategies | 3h | Intermediate |
 | [5404: Distributed Optimization](./5400-distributed-training/5404-Distributed-Optimization.md) | Gradient sync and all-reduce | 3h | Advanced |
 | [5405: FSDP2 and torchao](./5400-distributed-training/5405-FSDP2-and-torchao.md) | Composable sharding and quantized training | 4h | Advanced |
 | [5406: Distributed LR Scaling](./5400-distributed-training/5406-Distributed-LR-Scaling.md) | Linear rule, stability wall, warmup sizing, critical batch | 4h | Advanced |
@@ -313,12 +313,12 @@ graph TD
 
 | Module | Reading | Practice | Total |
 |--------|---------|----------|-------|
-| 5100: PEFT | 14h | 8h | 22h |
-| 5200: Alignment | 21h | 10h | 31h |
-| 5300: Synthetic Data | 11h | 6h | 17h |
-| 5400: Distributed Training | 20h | 8h | 28h |
-| 5500: Advanced Optimization | 13h | 8h | 21h |
-| **Total** | **79h** | **40h** | **119h** |
+| 5100: PEFT | 23h | 8h | 31h |
+| 5200: Alignment | 24h | 10h | 34h |
+| 5300: Synthetic Data | 16h | 5h | 21h |
+| 5400: Distributed Training | 21h | 8h | 29h |
+| 5500: Advanced Optimization | 10h | 8h | 18h |
+| **Total** | **94h** | **39h** | **133h** |
 
 ---
 
@@ -699,7 +699,7 @@ After completing this phase:
 
 ---
 
-**Module Duration:** 119 hours (79 reading + 40 practice)
+**Module Duration:** 133 hours (94 reading + 39 practice)
 
 **Difficulty:** ⭐⭐⭐ Advanced
 
