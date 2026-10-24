@@ -1,7 +1,7 @@
 ---
 Document ID: DIAGRAMS-README
 Title: "Minder Academy Architecture Diagrams"
-Last Updated: 2026-10-15
+Last Updated: 2026-10-24
 Status: Complete
 Difficulty: Beginner
 Tags: ['diagram', 'architecture', 'llm']
@@ -97,7 +97,7 @@ These diagrams use **Mermaid** syntax and can be viewed:
 For more details on the ReAct loop, see the [ReAct Diagram](../diagrams/REACT-LOOP.md).
 
 The ML lifecycle follows these stages:
-![ML Lifecycle](../diagrams/ML-LIFECYCLE.md)
+[ML Lifecycle](../diagrams/ML-LIFECYCLE.md)
 ```
 
 ---
