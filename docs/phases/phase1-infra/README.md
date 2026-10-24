@@ -1,7 +1,7 @@
 ---
 Document ID: PHASE1-INFRA-README
 Title: "Phase 1: Infrastructure Fabric [1000]"
-Last Updated: 2026-10-22
+Last Updated: 2026-10-24
 Status: Complete
 Difficulty: Advanced
 Tags: ['phase', 'infrastructure', 'gpu', 'networking']
@@ -286,7 +286,7 @@ graph LR
 | Document | Description | Time | Difficulty |
 |----------|-------------|------|------------|
 | [1101: Internet Uplink & Modem Configuration](./1100-network/1101-Fiber-GPON-Modem.md) | WAN uplink types, bridge mode | 2h | Beginner |
-| [1102: Network Topology Design](./1100-network/1102-Star-Topology-Core.md) | Star topology, VLANs, switch setup | 3h | Intermediate |
+| [1102: Network Topology Design](./1100-network/1102-Star-Topology-Core.md) | Star topology, VLANs, switch setup | 2h | Intermediate |
 | [1103: Jumbo Frames and MTU](./1100-network/1103-Jumbo-Frames-and-MTU.md) | MTU 9000 optimization | 2h | Intermediate |
 | [1104: The Protocol Stack - OSI Layers, TCP, and DNS](./1100-network/1104-Protocol-Stack-TCP-and-DNS.md) | OSI layers, TCP vs UDP, DNS, ports and TLS handshakes | 2h | Beginner |
 
@@ -311,8 +311,8 @@ graph LR
 | Document | Description | Time | Difficulty |
 |----------|-------------|------|------------|
 | [1201: Proxmox Hypervisor SOP](./1200-virtualization/1201-Proxmox-Hypervisor-SOP.md) | Core pinning, RAM balloons | 3h | Intermediate |
-| [1202: GPU Passthrough (IOMMU/VFIO)](./1200-virtualization/1202-TB3-UT3G-Passthrough.md) | IOMMU groups, VFIO binding, qm passthrough | 4h | Advanced |
-| [1203: NVIDIA Kernel Module](./1200-virtualization/1203-Nvidia-Kernel-Module.md) | DKMS, driver stability | 2h | Intermediate |
+| [1202: GPU Passthrough (IOMMU/VFIO)](./1200-virtualization/1202-TB3-UT3G-Passthrough.md) | IOMMU groups, VFIO binding, qm passthrough | 3h | Advanced |
+| [1203: NVIDIA Kernel Module](./1200-virtualization/1203-Nvidia-Kernel-Module.md) | DKMS, driver stability | 3h | Intermediate |
 | [1204: Multi-GPU Setup](./1200-virtualization/1204-Multi-GPU-Setup.md) | Multiple GPU configuration | 3h | Advanced |
 
 **What You'll Learn:**
@@ -333,9 +333,9 @@ graph LR
 
 | Document | Description | Time | Difficulty |
 |----------|-------------|------|------------|
-| [1301: K3s Architecture](./1300-kubernetes/1301-K3s-Master-Worker-Arch.md) | Multi-node cluster setup | 4h | Intermediate |
+| [1301: K3s Architecture](./1300-kubernetes/1301-K3s-Master-Worker-Arch.md) | Multi-node cluster setup | 3h | Intermediate |
 | [1302: GPU Scheduler](./1300-kubernetes/1302-GPU-Scheduler.md) | NVIDIA device plugin | 3h | Advanced |
-| [1303: Storage Classes](./1300-kubernetes/1303-Storage-Classes.md) | Dynamic NFS provisioning | 2h | Intermediate |
+| [1303: Storage Classes](./1300-kubernetes/1303-Storage-Classes.md) | Dynamic NFS provisioning | 3h | Intermediate |
 
 **What You'll Learn:**
 
@@ -355,11 +355,11 @@ graph LR
 
 | Document | Description | Time | Difficulty |
 |----------|-------------|------|------------|
-| [1401: Ollama Enterprise](./1400-llmops/1401-Ollama-Enterprise.md) | Local model APIs | 2h | Beginner |
+| [1401: Ollama Enterprise](./1400-llmops/1401-Ollama-Enterprise.md) | Local model APIs | 4h | Beginner |
 | [1402: vLLM and TGI](./1400-llmops/1402-vLLM-and-TGI.md) | High-concurrency engines | 4h | Intermediate |
 | [1405: SGLang](./1400-llmops/1405-SGLang.md) | RadixAttention serving | 4h | Advanced |
-| [1403: vLLM Production](./1400-llmops/guides/1403-vLLM-Production-Deployment.md) | Production deployment | 3h | Advanced |
-| [1404: TGI Deployment](./1400-llmops/guides/1404-TGI-Deployment-Guide.md) | TGI setup guide | 3h | Advanced |
+| [1403: vLLM Production](./1400-llmops/guides/1403-vLLM-Production-Deployment.md) | Production deployment | 5h | Advanced |
+| [1404: TGI Deployment](./1400-llmops/guides/1404-TGI-Deployment-Guide.md) | TGI setup guide | 6h | Advanced |
 
 **What You'll Learn:**
 
@@ -380,7 +380,7 @@ graph LR
 
 | Document | Description | Time | Difficulty |
 |----------|-------------|------|------------|
-| [1501: Monitoring and Observability](./1500-monitoring/1501-Monitoring-and-Observability.md) | Prometheus + Grafana + Loki | 4h | Intermediate |
+| [1501: Monitoring and Observability](./1500-monitoring/1501-Monitoring-and-Observability.md) | Prometheus + Grafana + Loki | 3h | Intermediate |
 | [1502: Model Drift Detection](./1500-monitoring/1502-Model-Drift-Detection.md) | Detecting model degradation | 3h | Advanced |
 | [1503: LLM Observability](./1500-monitoring/1503-LLM-Observability.md) | Advanced observability techniques | 3h | Advanced |
 
@@ -432,12 +432,12 @@ graph TD
 
 | Module | Reading | Practice | Total |
 |--------|---------|----------|-------|
-| 1100: Network | 9h | 5h | 14h |
+| 1100: Network | 8h | 5h | 13h |
 | 1200: Virtualization | 12h | 8h | 20h |
 | 1300: K3s | 9h | 6h | 15h |
-| 1400: LLMOps | 16h | 8h | 24h |
-| 1500: Monitoring | 4h | 4h | 8h |
-| **Total** | **50h** | **31h** | **81h** |
+| 1400: LLMOps | 23h | 8h | 31h |
+| 1500: Monitoring | 9h | 4h | 13h |
+| **Total** | **61h** | **31h** | **92h** |
 
 ---
 
