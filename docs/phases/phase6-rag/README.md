@@ -1,7 +1,7 @@
 ---
 Document ID: PHASE6-RAG-README
 Title: "Phase 6: Data Nexus - RAG, CAG & External Memory [6000]"
-Last Updated: 2026-10-22
+Last Updated: 2026-10-24
 Status: Complete
 Difficulty: Advanced
 Tags: ['phase', 'rag', 'retrieval', 'hybrid-search']
@@ -318,7 +318,7 @@ Conclusion: Self-hosted pays for itself within a few months
 |----------|-------------|------|------------|
 | [6101: RAG Foundations](./6100-vector/6101-HNSW-Indexing.md) | Efficient semantic search at scale | 3h | Intermediate |
 | [6102: Embedding Models](./6100-vector/6102-Semantic-Similarity.md) | Cosine, Dot-Product, Manifold metrics | 3h | Intermediate |
-| [6103: HNSW Tuning](./6100-vector/guides/6103-HNSW-Tuning-Guide.md) | HNSW optimization guide | 2h | Advanced |
+| [6103: HNSW Tuning](./6100-vector/guides/6103-HNSW-Tuning-Guide.md) | HNSW optimization guide | 3h | Advanced |
 | [6104: Embedding Sciences](./6100-vector/6104-Embedding-Sciences.md) | Pooling, matryoshka truncation, MTEB menus | 3h | Advanced |
 | [6105: Contextual and Multilingual Embeddings](./6100-vector/6105-Contextual-and-Multilingual-Embeddings.md) | Anisotropy, Procrustes alignment, shared spaces | 3h | Advanced |
 
@@ -346,7 +346,7 @@ Conclusion: Self-hosted pays for itself within a few months
 |----------|-------------|------|------------|
 | [6201: Hybrid Search](./6200-retrieval/6201-Hybrid-Search.md) | BM25 + Vector combination | 3h | Intermediate |
 | [6202: Re-ranking](./6200-retrieval/6202-Re-ranking-and-Retrieval-Logistics.md) | Post-search relevance filtering | 3h | Intermediate |
-| [6203: Advanced Retrieval](./6200-retrieval/6203-Advanced-Retrieval.md) | Query expansion, fusion | 2h | Advanced |
+| [6203: Advanced Retrieval](./6200-retrieval/6203-Advanced-Retrieval.md) | Query expansion, fusion | 3h | Advanced |
 | [6204: Diversification and Boosting](./6200-retrieval/6204-Diversification-and-Boosting.md) | MMR diversification + source boosting | 3h | Advanced |
 
 **What You'll Learn:**
@@ -372,7 +372,7 @@ Conclusion: Self-hosted pays for itself within a few months
 |----------|-------------|------|------------|
 | [6301: Neo4j and Knowledge Graphs](./6300-context/6301-Neo4j-and-Knowledge-Graphs.md) | Neo4j and Knowledge Graphs | 5h | Advanced |
 | [6302: Caching and Memory](./6300-context/6302-CAG-Long-Context-Architectures.md) | 128k+ token as "Temporary Database" | 5h | Advanced |
-| [6303: Neo4j Deployment](./6300-context/guides/6303-Neo4j-Deployment-Guide.md) | Neo4j setup guide | 2h | Advanced |
+| [6303: Neo4j Deployment](./6300-context/guides/6303-Neo4j-Deployment-Guide.md) | Neo4j setup guide | 3h | Advanced |
 | [6304: GraphRAG Implementation](./6300-context/guides/6304-GraphRAG-Implementation.md) | Complete GraphRAG pipeline | 4h | Advanced |
 | [6305: LongLoRA, Ring Attention, and Context Distillation](./6300-context/6305-LongLoRA-Ring-Attention-and-Context-Distillation.md) | Context extension training methods | 3h | Advanced |
 | [6306: Context Window Economics](./6300-context/6306-Context-Window-Economics.md) | The window as a priced allocation | 3h | Advanced |
@@ -403,7 +403,7 @@ Conclusion: Self-hosted pays for itself within a few months
 | [6401: Qdrant Setup](./6400-vector-databases/6401-Qdrant-Setup.md) | Qdrant configuration | 3h | Intermediate |
 | [6402: Pinecone vs Weaviate](./6400-vector-databases/6402-Pinecone-vs-Weaviate.md) | Comparison guide | 3h | Intermediate |
 | [6404: Vector Compression and Quantization](./6400-vector-databases/6404-Vector-Compression-Quantization.md) | SQ, binary, and PQ mechanics | 3h | Intermediate |
-| [6403: Qdrant Production Deployment](./6400-vector-databases/guides/6403-Qdrant-Production-Deployment.md) | Production deployment guide | 2h | Intermediate |
+| [6403: Qdrant Production Deployment](./6400-vector-databases/guides/6403-Qdrant-Production-Deployment.md) | Production deployment guide | 5h | Intermediate |
 
 **What You'll Learn:**
 
@@ -493,14 +493,13 @@ graph TD
 
 | Module | Reading | Practice | Total |
 |--------|---------|----------|-------|
-| 6100: Vector Embeddings | 14h | 6h | 20h |
-| 6200: Retrieval Strategies | 11h | 6h | 17h |
-| 6300: Context Augmentation | 22h | 10h | 32h |
-| 6400: Vector Databases | 11h | 4h | 15h |
-| 6500: MLOps Pipelines | 18h | — | 18h |
-| **Total** | **76h** | **26h** | **102h** |
+| 6100: Vector Embeddings | 15h | 2h | 17h |
+| 6200: Retrieval Strategies | 12h | 6-8h | 18-20h |
+| 6300: Context Augmentation | 23h | 4h | 27h |
+| 6400: Vector Databases | 14h | 3h | 17h |
+| 6500: MLOps Pipelines | 18h | 3h | 21h |
+| **Total** | **82h** | **18-20h** | **100-102h** |
 
-*6500 practice time is not yet estimated; phase totals cover the estimated modules.*
 
 ---
 
@@ -854,7 +853,7 @@ After completing this phase:
 
 ---
 
-**Module Duration:** 102 hours (76 reading + 26 practice)
+**Module Duration:** 100-102 hours (82 reading + 18-20 practice)
 
 **Difficulty:** ⭐⭐⭐ Advanced
 
