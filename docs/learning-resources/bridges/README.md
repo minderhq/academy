@@ -1,7 +1,7 @@
 ---
 Document ID: BRIDGES-README
 Title: "The Tutorial-to-Lab Bridge"
-Last Updated: 2026-10-13
+Last Updated: 2026-10-24
 Status: Complete
 Difficulty: Beginner
 Tags: ['bridge', 'roadmap']
@@ -14,7 +14,7 @@ One bridge document connecting the tutorial track to the lab track: after finish
 ## Available Bridges
 
 ### [Tutorial to Lab Bridge Guide](./TUTORIAL-TO-LAB-BRIDGE.md)
-Bridging the gap between tutorials and hands-on labs - the mapping from every TUTORIAL to the LABs that practice it.
+Bridging the gap between tutorials and hands-on labs - the mapping from Hello LLM, Docker Essentials, RAG Basics, and LoRA Basics to the LABs that practice them.
 
 ## Related Documentation
 
