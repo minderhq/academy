@@ -1,7 +1,7 @@
 ---
 Document ID: LAB-009
 Title: "LAB-009: Production Deployment"
-Last Updated: 2026-10-13
+Last Updated: 2026-10-25
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 12 hours
@@ -16,7 +16,7 @@ Tags: ['lab', 'production', 'deployment', 'hands-on']
 
 ## Lab Overview
 
-**Time:** 8-10 hours
+**Time:** 12 hours
 
 **Difficulty:** ⭐⭐⭐ Advanced
 
