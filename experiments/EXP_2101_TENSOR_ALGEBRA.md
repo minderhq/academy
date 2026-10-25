@@ -1,7 +1,7 @@
 ---
 Document ID: EXP_2101
 Title: "EXP_2101: Tensor Algebra"
-Last Updated: 2026-10-16
+Last Updated: 2026-10-26
 Status: Complete
 Difficulty: Intermediate
 ---
@@ -14,7 +14,7 @@ Difficulty: Intermediate
 
 ## 🎯 Experiment Overview
 
-**Time:** 45-60 minutes
+**Time:** 2 hours
 
 **Difficulty:** ⭐⭐ Intermediate
 
@@ -545,10 +545,10 @@ print(f"Difference: {np.abs(num_grad - x_test.grad.data).max()}")
 
 ---
 
-**Last Updated:** 2026-10-16
+**Last Updated:** 2026-10-26
 
 **Experiment:** 2101 - Tensor Algebra
 
-**Time Estimate:** 45-60 minutes
+**Time Estimate:** 2 hours
 
 **Difficulty:** ⭐⭐ Intermediate
