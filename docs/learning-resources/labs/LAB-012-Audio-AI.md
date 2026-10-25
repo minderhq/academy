@@ -1,7 +1,7 @@
 ---
 Document ID: LAB-012
 Title: "LAB-012: Audio AI"
-Last Updated: 2026-10-13
+Last Updated: 2026-10-25
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 7 hours
@@ -16,7 +16,7 @@ Tags: ['lab', 'audio', 'whisper', 'hands-on']
 
 ## Lab Overview
 
-**Time:** 4-5 hours
+**Time:** 7 hours
 
 **Difficulty:** ⭐⭐⭐ Advanced
 
