@@ -1,7 +1,7 @@
 ---
 Document ID: LAB-011
 Title: "LAB-011: Multi-Modal AI"
-Last Updated: 2026-10-14
+Last Updated: 2026-10-25
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 9 hours
@@ -16,7 +16,7 @@ Tags: ['lab', 'multimodal', 'vision', 'hands-on']
 
 ## Lab Overview
 
-**Time:** 6-8 hours
+**Time:** 9 hours
 
 **Difficulty:** ⭐⭐⭐ Advanced
 
