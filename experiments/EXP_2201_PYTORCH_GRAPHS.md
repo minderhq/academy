@@ -1,7 +1,7 @@
 ---
 Document ID: EXP_2201
 Title: "EXP_2201: PyTorch Computational Graphs"
-Last Updated: 2026-10-16
+Last Updated: 2026-10-26
 Status: Complete
 Difficulty: Intermediate
 ---
@@ -14,7 +14,7 @@ Difficulty: Intermediate
 
 ## 🎯 Experiment Overview
 
-**Time:** 60-75 minutes
+**Time:** 2 hours
 
 **Difficulty:** ⭐⭐ Intermediate
 
@@ -560,10 +560,10 @@ loss.grad → ∂loss/∂b → ∂loss/∂a → ∂loss/∂x
 
 ---
 
-**Last Updated:** 2026-10-16
+**Last Updated:** 2026-10-26
 
 **Experiment:** 2201 - PyTorch Computational Graphs
 
-**Time Estimate:** 60-75 minutes
+**Time Estimate:** 2 hours
 
 **Difficulty:** ⭐⭐ Intermediate
