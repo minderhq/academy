@@ -1,7 +1,7 @@
 ---
 Document ID: 4300-QUANTIZATION-AWARE-TRAINING-README
 Title: "4300: Quantization Aware Training (QAT)"
-Last Updated: 2026-10-16
+Last Updated: 2026-10-25
 Status: Complete
 Difficulty: Advanced
 Prerequisites: [4100]
@@ -53,7 +53,7 @@ See [PREREQUISITES.md](./PREREQUISITES.md) for details.
 
 Validate your knowledge with:
 
-- **[4300: Quantization Aware Training - Quiz](./assessment/QUIZ.md)** - Test your understanding (20 questions, 80% to pass)
+- **[4300: Quantization Aware Training - Quiz](./assessment/QUIZ.md)** - Test your understanding (25 questions, 80% to pass)
 - **[4300: Quantization Aware Training - Practice](./assessment/PRACTICE.md)** - Hands-on exercises
 
 ## Related Topics
