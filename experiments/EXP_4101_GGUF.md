@@ -1,7 +1,7 @@
 ---
 Document ID: EXP_4101
 Title: "EXP_4101: GGUF Quantization"
-Last Updated: 2026-10-16
+Last Updated: 2026-10-26
 Status: Complete
 Difficulty: Advanced
 ---
@@ -14,7 +14,7 @@ Difficulty: Advanced
 
 ## 🎯 Experiment Overview
 
-**Time:** 60-90 minutes
+**Time:** 2 hours
 
 **Difficulty:** ⭐⭐⭐ Advanced
 
@@ -494,10 +494,10 @@ print(f"\nMean Output Difference: {output_diff:.6f}")
 
 ---
 
-**Last Updated:** 2026-10-08
+**Last Updated:** 2026-10-26
 
 **Experiment:** 4101 - GGUF Quantization
 
-**Time Estimate:** 60-90 minutes
+**Time Estimate:** 2 hours
 
 **Difficulty:** ⭐⭐⭐ Advanced
