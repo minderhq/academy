@@ -45,8 +45,8 @@ You'll learn:
 ### How long does it take?
 
 - **Fast Track:** 3-4 months (experienced developers)
-- **Complete Mastery:** 6-12 months (comprehensive understanding)
-- **Total Time:** 300-350 hours across all phases
+- **Complete Mastery:** 12-18 months at a steady part-time pace
+- **Guided study budget:** about 365-445 hours, summed from the seven volume estimates; capstone projects and repeated practice add time
 
 ---
 
@@ -154,7 +154,7 @@ Start here:
 
 ### What's the difference between the learning paths?
 
-**Complete Mastery (6-12 months):**
+**Complete Mastery (12-18 months):**
 
 - All phases in order
 - All experiments and labs
@@ -342,8 +342,8 @@ Use **[PROGRESS-TRACKER.md](PROGRESS-TRACKER.md)** to:
 
 **Recommended:**
 
-- **Casual:** 5-7 hours/week → 12-18 months
-- **Dedicated:** 10-15 hours/week → 6-9 months
+- **Casual:** 5-7 hours/week → about 12-18 months
+- **Dedicated:** 10-15 hours/week → about 6-11 months
 - **Intensive:** 20+ hours/week → 3-6 months
 
 ### Tips for staying on track

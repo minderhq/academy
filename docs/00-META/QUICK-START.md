@@ -19,7 +19,7 @@ In the next 30 minutes, you will:
 
 1. ✅ Install Ollama (easiest LLM runner)
 2. ✅ Run your first local AI model
-3. ✅ Chat with Qwen3 4B
+3. ✅ Chat with Qwen3.5 0.8B
 4. ✅ Understand the basics
 5. ✅ Know where to go next
 
@@ -47,7 +47,8 @@ In the next 30 minutes, you will:
 
 **If you have limited resources:**
 
-- 8GB RAM: Start with `qwen3:4b`; close memory-heavy apps if needed
+- 8GB RAM: Start with `qwen3.5:0.8b`; close memory-heavy apps if needed
+- 16GB+ RAM: Try `qwen3.5:2b` for a more capable local model
 - CPU-only: Models will run slower but work
 - Limited disk: Start with one model at a time
 
@@ -96,17 +97,17 @@ The command prints the installed Ollama version. The exact format changes betwee
 Ollama makes it incredibly easy:
 
 ```bash
-# Pull Qwen3 4B (a practical starting point for a typical laptop)
-ollama pull qwen3:4b
+# Pull the small Qwen3.5 0.8B model for a low-memory first run
+ollama pull qwen3.5:0.8b
 
-# The model download is about 2.5 GB; allow extra disk space for runtime use.
+# The model download is about 1.2 GB; leave extra disk space for runtime use.
 ```
 
 ### What's Happening?
-- Qwen3 4B is an open-weight model with 4 billion parameters
-- The Ollama Q4_K_M download is about 2.5 GB; memory use also depends on context length and other running apps
-- A 7B model such as Mistral is an option for machines with more memory
-- Model size and available tags can change; check the [Qwen3 model page](https://ollama.com/library/qwen3:4b) before downloading
+- Qwen3.5 is an open-weight multimodal model family; this guide starts with its 0.8B variant
+- Ollama currently lists the 0.8B download at about 1.2-1.3 GB; runtime memory also depends on context length and other running apps
+- With more memory, `qwen3.5:2b` is a larger option; its listed download is about 2.7-3.1 GB
+- Model sizes and available tags can change; check the [Qwen3.5 model page](https://ollama.com/library/qwen3.5) before downloading
 
 ### Other Options (for later)
 ```bash
@@ -122,7 +123,7 @@ ollama pull llama3.2:3b     # Meta's Llama 3.2
 ping google.com
 
 # Try again (Ollama resumes automatically)
-ollama pull qwen3:4b
+ollama pull qwen3.5:0.8b
 ```
 
 **"Connection refused" error?**
@@ -140,13 +141,13 @@ ollama pull qwen3:4b
 ```bash
 # Your system might not have enough RAM
 # Try a smaller model:
-ollama pull qwen3:1.7b     # Use a smaller model
+ollama pull qwen3.5:0.8b   # Use the smallest option in this guide
 ```
 
 **Verify model downloaded successfully:**
 ```bash
 ollama list
-# Should show: qwen3:4b and its downloaded size
+# Should show: qwen3.5:0.8b and its downloaded size
 ```
 
 ---
@@ -155,7 +156,7 @@ ollama list
 
 ### Simple Chat
 ```bash
-ollama run qwen3:4b
+ollama run qwen3.5:0.8b
 ```
 
 Type your message and press Enter!
@@ -189,7 +190,7 @@ pip install ollama
 import ollama
 
 # Simple chat
-response = ollama.chat(model='qwen3:4b', messages=[
+response = ollama.chat(model='qwen3.5:0.8b', messages=[
     {
         'role': 'user',
         'content': 'Why is the sky blue?'
@@ -231,7 +232,7 @@ class AIAssistant:
 
         # Get response from AI
         response = ollama.chat(
-            model='qwen3:4b',
+            model='qwen3.5:0.8b',
             messages=self.history
         )
 
@@ -274,7 +275,7 @@ python ai_assistant.py
 | Concept | What It Means |
 |---------|---------------|
 | **LLM** | Large Language Model - AI that understands and generates text |
-| **Qwen3 4B** | A model family; this guide uses its 4-billion-parameter variant |
+| **Qwen3.5 0.8B** | The small text-and-image model variant used in this guide |
 | **Ollama** | Tool to run LLMs locally on your computer |
 | **API** | Application Programming Interface - how code talks to AI |
 
@@ -334,14 +335,14 @@ You're now ready for the full learning journey!
 **Solution:**
 
 - Close other applications
-- Try a smaller model: `ollama pull qwen3:1.7b`
+- Try the smallest model in this guide: `ollama pull qwen3.5:0.8b`
 - Add more RAM to your computer
 
 ### Issue: "Model download is slow"
 
 **Solution:**
 
-- Allow time for the model download; this guide's model is about 2.5 GB
+- Allow time for the model download; this guide's model is about 1.2 GB
 - Try a different network
 - Use a download manager if needed
 
@@ -396,7 +397,7 @@ You just completed your first step into the world of local AI!
 **What you can do now:**
 
 - ✅ Run AI models on your computer
-- ✅ Chat with Qwen3 4B
+- ✅ Chat with Qwen3.5 0.8B
 - ✅ Build basic AI scripts
 - ✅ Understand the fundamentals
 

@@ -1,7 +1,7 @@
 ---
 Document ID: 0000
 Title: "Minder Academy Learning Path"
-Last Updated: 2026-10-22
+Last Updated: 2026-10-27
 Status: Complete
 Difficulty: Beginner
 Tags: ['roadmap', 'guide', 'llm']
@@ -32,9 +32,9 @@ Tags: ['roadmap', 'guide', 'llm']
 
 ## Complete AI/LLM Infrastructure Curriculum - From Zero to Hero
 
-**Last Updated:** 2026-10-22
+**Last Updated:** 2026-10-27
 
-**Estimated Time:** 6-12 months (part-time) - 48 study weeks + capstone
+**Estimated Time:** 12-18 months (part-time) - 48 study weeks + capstone
 
 **Prerequisites:** None! We start from absolute zero.
 

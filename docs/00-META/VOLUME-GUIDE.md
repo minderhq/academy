@@ -38,7 +38,7 @@ Follow the volumes below, in order.
 | **[Volume 6](#volume-6-data-nexus-rag--memory)** | Data Nexus: RAG & Memory | ⭐⭐⭐ Advanced | 4-5 weeks | Vector DBs, GraphRAG, agents |
 | **[Volume 7](#volume-7-production-mastery)** | Production Mastery | ⭐⭐⭐ Advanced | 5-6 weeks | CI/CD, scaling, monitoring |
 
-**Total Time:** 12-18 months (realistic pace for 10-15 hours/week)
+**Scheduled Volume Time:** 25-32 study weeks from the volume estimates above (about 6-8 months if you study one week per calendar week). Capstones, practice, and breaks add calendar time.
 
 ---
 

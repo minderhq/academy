@@ -1,7 +1,7 @@
 ---
 Document ID: PROGRESS-TRACKER
 Title: "PROGRESS TRACKER: Minder Academy Learning Journey"
-Last Updated: 2026-10-25
+Last Updated: 2026-10-27
 Status: Complete
 Difficulty: Beginner
 Tags: ['roadmap', 'guide', 'practice']
@@ -474,7 +474,7 @@ For experienced developers who want to get productive quickly:
 3. Volume 5 (jump to fine-tuning)
 4. Volume 7 (production deployment)
 
-### Deep Learning (6-12 months)
+### Deep Learning (12-18 months)
 For complete mastery of AI systems:
 
 1. Complete all volumes in order (1 → 7)

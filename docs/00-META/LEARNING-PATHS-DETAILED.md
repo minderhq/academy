@@ -1,7 +1,7 @@
 ---
 Document ID: LEARNING-PATHS-DETAILED
 Title: "Detailed Learning Paths"
-Last Updated: 2026-10-24
+Last Updated: 2026-10-27
 Status: Complete
 Difficulty: Beginner
 Tags: ['roadmap', 'guide', 'llm']
@@ -17,7 +17,7 @@ Tags: ['roadmap', 'guide', 'llm']
 
 | Path | Duration | Difficulty | Target Audience | Outcome |
 |------|----------|------------|-----------------|---------|
-| **🚀 Fast Track** | 6-8 months | ⭐⭐⭐ | Experienced devs | Productive quickly |
+| **🚀 Fast Track** | 3-4 months | ⭐⭐⭐ | Experienced devs | Productive quickly |
 | **📚 Complete Mastery** | 12-18 months | ⭐→⭐⭐⭐⭐ | Everyone | Expert level |
 | **🔍 RAG Specialist** | 4-6 months | ⭐⭐⭐ | Data-focused | RAG systems expert |
 | **🎯 Fine-Tuning Expert** | 4-6 months | ⭐⭐⭐ | ML-focused | Model adaptation |
@@ -25,11 +25,11 @@ Tags: ['roadmap', 'guide', 'llm']
 | **🤖 Agent Builder** | 5-7 months | ⭐⭐⭐⭐ | Advanced | Agentic systems |
 | **📊 Research Path** | 12-15 months | ⭐⭐⭐⭐ | Academic | Deep understanding |
 
-**IMPORTANT:** These are realistic estimates for 15-20 hours/week of dedicated study. Adjust based on your availability and prior experience.
+Use the weekly commitment listed under each path as a planning guide. The duration ranges assume steady study; breaks, prior experience, and optional projects change the calendar time.
 
 ---
 
-## Path 1: Fast Track (6-8 months)
+## Path 1: Fast Track (3-4 months)
 
 **"Get productive quickly"** - For experienced developers who want to build AI applications fast.
 
@@ -140,7 +140,7 @@ Checkpoint: Fine-tuned domain-specific model
 
 - No prior ML experience required
 - Basic programming knowledge helpful
-- Commitment to 10-15 hours/week for 12+ months
+- Commitment to 5-7 hours/week for 12-18 months
 - Patience to build strong fundamentals
 
 ### Phase 1: Infrastructure Fabric (Month 1-3)
@@ -713,7 +713,7 @@ Deliverables:
 3. **How much time do you have?**
     - 2-3 months → Specialized paths
     - 3-4 months → Fast Track or Agent Builder
-    - 6-12 months → Complete Mastery or Research
+    - 12-18 months → Complete Mastery or Research
 
 ### Path Switching
 
@@ -730,7 +730,7 @@ You can switch paths at any time! Here are common transitions:
 
 | Aspect | Fast Track | Complete | RAG | Fine-Tuning | Infra | Agent | Research |
 |--------|-----------|----------|-----|-------------|-------|-------|----------|
-| **Duration** | 3-4 months | 6-12 months | 2-3 months | 2-3 months | 2-3 months | 3-4 months | 8-10 months |
+| **Duration** | 3-4 months | 12-18 months | 2-3 months | 2-3 months | 2-3 months | 3-4 months | 8-10 months |
 | **Difficulty** | ⭐⭐⭐ | ⭐→⭐⭐⭐⭐ | ⭐⭐⭐ | ⭐⭐⭐ | ⭐⭐ | ⭐⭐⭐⭐ | ⭐⭐⭐⭐ |
 | **Math Depth** | Medium | High | Low | High | Low | Medium | Very High |
 | **Coding** | High | Very High | High | Very High | High | Very High | Very High |

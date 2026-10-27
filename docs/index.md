@@ -25,7 +25,7 @@ code locally - the paths below are ordered the way the curriculum teaches.
 
 | Start with | What you get |
 |------------|--------------|
-| **[Get Running in 30 Minutes](00-META/QUICK-START.md)** | Install Ollama and try Qwen3 4B locally; no GPU required, with 16 GB+ RAM recommended for headroom. |
+| **[Get Running in 30 Minutes](00-META/QUICK-START.md)** | Install Ollama and try Qwen3.5 0.8B locally; no GPU required, with 8 GB RAM minimum and 16 GB+ recommended for headroom. |
 | **[Follow the Week-by-Week Roadmap](00-META/0000-LEARNING-PATH.md)** | A 48-week route from Python fundamentals (Phase 0) through all seven phases to production agentic systems. |
 | **[Track Your Progress](00-META/PROGRESS-TRACKER.md)** | Close every module with its practice set and quiz, then log the checkpoint so you always know where you stand. |
 | **[Keep a Cheat Sheet Open](learning-resources/cheat-sheets/README.md)** | Eighty concise references, from command and concept sheets to one guide for each of the seven curriculum volumes. |
