@@ -1,7 +1,7 @@
 ---
 Document ID: INDEX
 Title: "Minder Academy"
-Last Updated: 2026-10-14
+Last Updated: 2026-10-27
 Status: Complete
 Difficulty: Beginner
 Tags: ['maintenance', 'navigation']
@@ -9,12 +9,12 @@ Tags: ['maintenance', 'navigation']
 
 # Minder Academy
 
-A comprehensive, production-grade AI engineering curriculum: seven phases,
-thirty-three technical modules - from GPU infrastructure and Kubernetes to
-transformer internals, quantization, fine-tuning, RAG systems, and agentic
-production stacks. Every lesson teaches with runnable code fences, every
-design claim is priced in real numbers, and the whole corpus is kept honest
-by a fleet of automated quality gates.
+An applied AI engineering curriculum organized into seven phases and
+thirty-three modules - from GPU infrastructure and Kubernetes to transformer
+internals, quantization, fine-tuning, retrieval, and agentic systems. The
+curriculum includes explanations, code examples, diagrams, practice,
+assessments, notebooks, and production-oriented guides. Automated checks keep
+its structure, links, code syntax, and navigation consistent.
 
 This site is the browsable form of the
 [GitHub repository](https://github.com/minderhq/academy). Read here, run the
@@ -25,10 +25,10 @@ code locally - the paths below are ordered the way the curriculum teaches.
 
 | Start with | What you get |
 |------------|--------------|
-| **[Get Running in 30 Minutes](00-META/QUICK-START.md)** | Install Ollama, run your first local model, and start chatting - on an 8 GB laptop, no GPU required. |
+| **[Get Running in 30 Minutes](00-META/QUICK-START.md)** | Install Ollama and try Qwen3 4B locally; no GPU required, with 16 GB+ RAM recommended for headroom. |
 | **[Follow the Week-by-Week Roadmap](00-META/0000-LEARNING-PATH.md)** | A 48-week route from Python fundamentals (Phase 0) through all seven phases to production agentic systems. |
 | **[Track Your Progress](00-META/PROGRESS-TRACKER.md)** | Close every module with its practice set and quiz, then log the checkpoint so you always know where you stand. |
-| **[Keep a Cheat Sheet Open](learning-resources/cheat-sheets/README.md)** | Eighty single-page references, grouped by phase - one per tool, one per volume, every command copy-paste ready. |
+| **[Keep a Cheat Sheet Open](learning-resources/cheat-sheets/README.md)** | Eighty concise references, from command and concept sheets to one guide for each of the seven curriculum volumes. |
 | **[Prepare for the Job Market](learning-resources/guides/GUIDE-CAREER.md)** | Career, interview, and resume guides that map the curriculum onto real AI engineering roles. |
 
 ## Start Here
