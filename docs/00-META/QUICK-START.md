@@ -174,15 +174,6 @@ Write a Python function to check if a number is prime
 
 ## Step 4: Use with Python (5 minutes)
 
-### Install the Ollama Python library
-```bash
-# uv (fast, recommended - see ENVIRONMENT-SETUP.md)
-uv pip install ollama
-
-# plain pip works too
-pip install ollama
-```
-
 ### Create Your First AI Script
 
 ```python
@@ -201,7 +192,20 @@ print(response['message']['content'])
 ```
 
 ### Run It
+
+If you do not have uv yet, install it using the
+[Python environment setup](ENVIRONMENT-SETUP.md#step-3-python-environment-uv).
+
 ```bash
+# uv makes Ollama available for this run without changing project dependencies
+uv run --no-project --with ollama python my_first_ai.py
+```
+
+If you already activated a virtual environment and prefer pip, install the
+library into that environment, then run the script there:
+
+```bash
+python -m pip install ollama
 python my_first_ai.py
 ```
 
@@ -265,7 +269,7 @@ while True:
 
 ### Run It
 ```bash
-python ai_assistant.py
+uv run --no-project --with ollama python ai_assistant.py
 ```
 
 ---
@@ -350,13 +354,11 @@ You're now ready for the full learning journey!
 
 **Solution:**
 ```bash
-# Recommended: install into the project venv with uv
-# (run from the directory that holds .venv)
-uv pip install ollama
+# Recommended: run with Ollama available in an isolated environment
+uv run --no-project --with ollama python my_first_ai.py
 
-# Plain pip fallback
-python -m pip install --upgrade pip
-pip install ollama
+# If you use an activated virtual environment, install into that environment
+python -m pip install ollama
 ```
 
 ---
