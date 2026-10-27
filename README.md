@@ -79,8 +79,7 @@ Then follow the [Quick Start](https://minderhq.github.io/academy/00-META/QUICK-S
 Corrections and improvements are welcome. Review the [documentation style guide](https://minderhq.github.io/academy/00-META/STYLE-GUIDE/), open an [issue](https://github.com/minderhq/academy/issues), or submit a pull request. The QA workflow runs the content, link, code-block, and structure checks on each pull request.
 
 To preview or strictly validate the documentation site locally, install the
-locked documentation tools and run MkDocs as a Python module from the
-repository root:
+locked documentation tools from the repository root:
 
 ```bash
 uv sync --group docs
@@ -88,8 +87,9 @@ uv run python -m mkdocs serve
 uv run python -m mkdocs build --strict
 ```
 
-The module invocation keeps the repository root importable, which is required
-for the local `gh_slugify.py` used by the Markdown heading anchors.
+The docs group installs the repo-local `gh_slugify.py` helper into the
+environment, so both the MkDocs command and Python module invocation can load
+the GitHub-compatible Markdown heading anchors.
 
 ## Full repository reference
 
