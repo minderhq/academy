@@ -9,7 +9,7 @@ Tags: ['project', 'rag', 'llm']
 
 # CAPSTONE PROJECT-001: Build Your AI Assistant
 
-**A complete end-to-end project combining all learned concepts**
+**An end-to-end learning project combining the core concepts**
 
 ---
 
@@ -21,9 +21,9 @@ Build a fully-functional AI assistant that can:
 - Remember previous conversations (Agent Memory)
 - Perform tasks using tools (Tool Calling)
 - Run efficiently on your hardware (Optimization)
-- Scale to production-ready deployment (LLMOps)
+- Apply deployment and operations practices (LLMOps)
 
-**Estimated Time:** 20-30 hours
+**Estimated Time:** 20-30 hours of project work; prerequisite study is additional
 
 **Difficulty:** ⭐⭐⭐ Advanced
 
@@ -51,7 +51,7 @@ Build a fully-functional AI assistant that can:
 - Error handling (`try/except`, custom exceptions)
 - Working with APIs (`requests.post()`, JSON responses)
 
-ℹ️ **If you're missing these skills**, complete **TUTORIAL-000** first. It covers all required Python concepts in 6-8 hours.
+ℹ️ **If you're missing these skills**, complete **TUTORIAL-000** first. It covers the required Python concepts in about 15-20 hours.
 
 ---
 
