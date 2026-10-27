@@ -1,7 +1,7 @@
 ---
 Document ID: PROJECT-001
 Title: "CAPSTONE PROJECT-001: Build Your AI Assistant"
-Last Updated: 2026-10-15
+Last Updated: 2026-10-27
 Status: Complete
 Difficulty: Advanced
 Tags: ['project', 'rag', 'llm']
@@ -206,12 +206,10 @@ services:
     networks:
       - ai-net
 
-  # Tool Executor (Sandbox)
+  # Tool Executor (untrusted code; isolate this service)
   tool-executor:
     build: ./services/tools
     container_name: tool-executor
-    ports:
-      - "8003:8003"
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
     restart: unless-stopped
@@ -464,7 +462,7 @@ driver.close()
 ```python
 # ~/ai-assistant/services/rag/rag_service.py
 import asyncio
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI
 from pydantic import BaseModel
 
 import requests
@@ -905,13 +903,24 @@ if __name__ == "__main__":
 
 ### 5.1 Create Tool Service
 
+> **Security boundary:** This service controls the host Docker daemon through
+> its socket. That access is effectively host-administrator access. The code
+> below limits each child container, but it does not make the Docker socket or
+> this service safe to expose to untrusted users. Keep the service private on
+> the Compose network, use a dedicated disposable host for untrusted prompts,
+> and add authentication, rate limits, execution timeouts, and output limits
+> before enabling these endpoints for other users. This sample is not a
+> multi-tenant sandbox.
+> Review Docker's [rootless mode](https://docs.docker.com/engine/security/rootless/)
+> before adapting this for anything beyond a local learning environment.
+
 ```python
 # ~/ai-assistant/services/tools/tool_executor.py
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
 from typing import Any
-import subprocess
 import docker
+import shlex
 import tempfile
 import os
 
@@ -930,21 +939,30 @@ def execute_python_code(code: str) -> dict[str, Any]:
         temp_file = f.name
 
     try:
-        # Run in isolated container
+        # The child container runs as an unprivileged UID and must be able to read it.
+        os.chmod(temp_file, 0o644)
+        # Run with no network, no writable root filesystem, and bounded resources.
         result = docker_client.containers.run(
             "python:3.13-slim",
-            f"python /app/code.py",
-            volumes={os.path.dirname(temp_file): {'bind': '/app', 'mode': 'ro'}},
+            ["python", "/app/code.py"],
+            volumes={temp_file: {'bind': '/app/code.py', 'mode': 'ro'}},
+            user="65534:65534",
+            read_only=True,
+            cap_drop=["ALL"],
+            security_opt=["no-new-privileges:true"],
+            pids_limit=64,
+            tmpfs={"/tmp": "rw,noexec,nosuid,size=64m"},
             mem_limit='512m',
             cpu_period=100000,
             cpu_quota=50000,
             network_disabled=True,
             remove=True,
             stdout=True,
-            stderr=True
+            stderr=True,
+            environment={"PYTHONDONTWRITEBYTECODE": "1"},
         )
 
-        return {"success": True, "output": result}
+        return {"success": True, "output": result.decode("utf-8", errors="replace")}
 
     except Exception as e:
         return {"success": False, "error": str(e)}
@@ -952,30 +970,42 @@ def execute_python_code(code: str) -> dict[str, Any]:
         os.unlink(temp_file)
 
 def execute_shell_command(command: str) -> dict[str, Any]:
-    """Execute an allowlisted command (argv list - no shell)"""
+    """Execute an allowlisted command in a restricted child container."""
 
-    # Whitelist of safe commands
+    if not command.strip() or len(command) > 1024:
+        return {"success": False, "error": "Command must be 1-1024 characters"}
+
+    try:
+        # Parse arguments without invoking a shell; metacharacters remain data.
+        cmd_parts = shlex.split(command)
+    except ValueError as e:
+        return {"success": False, "error": f"Invalid command syntax: {e}"}
+
     allowed_commands = ['ls', 'pwd', 'echo', 'cat', 'grep', 'wc']
-
-    cmd_parts = command.split()
-    if cmd_parts[0] not in allowed_commands:
+    if not cmd_parts or cmd_parts[0] not in allowed_commands:
         return {"success": False, "error": "Command not allowed"}
 
     try:
-        # cmd_parts is the validated argv list - running the list form
-        # keeps shell metacharacters in user input inert (no /bin/sh)
-        result = subprocess.run(
+        # No host files are mounted; the child has no network or Linux capabilities.
+        result = docker_client.containers.run(
+            "python:3.13-slim",
             cmd_parts,
-            capture_output=True,
-            text=True,
-            timeout=30
+            user="65534:65534",
+            read_only=True,
+            cap_drop=["ALL"],
+            security_opt=["no-new-privileges:true"],
+            pids_limit=32,
+            tmpfs={"/tmp": "rw,noexec,nosuid,size=16m"},
+            mem_limit='128m',
+            cpu_period=100000,
+            cpu_quota=25000,
+            network_disabled=True,
+            remove=True,
+            stdout=True,
+            stderr=True,
         )
 
-        return {
-            "success": result.returncode == 0,
-            "output": result.stdout,
-            "error": result.stderr
-        }
+        return {"success": True, "output": result.decode("utf-8", errors="replace")}
 
     except Exception as e:
         return {"success": False, "error": str(e)}
