@@ -184,20 +184,43 @@ uv --version
 
 #### Create the Project Environment
 
+**macOS / Linux:**
+
 ```bash
-# Create project directory
-mkdir -p ~/academy
-cd ~/academy
+mkdir -p "$HOME/academy"
+cd "$HOME/academy"
+```
 
-# Create a virtual environment with Python 3.13
-# (uv downloads the interpreter itself if it is missing)
+**Windows PowerShell:**
+
+```powershell
+New-Item -ItemType Directory -Force "$HOME\academy" | Out-Null
+Set-Location "$HOME\academy"
+```
+
+Create the same virtual environment on any platform; uv downloads Python 3.13
+if it is missing:
+
+```console
 uv venv --python 3.13
+```
 
-# Activate — optional: uv finds .venv automatically when run
-# inside the project directory
-source .venv/bin/activate    # Mac/Linux
-.\.venv\Scripts\Activate.ps1 # Windows PowerShell
-.venv\Scripts\activate.bat   # Windows Command Prompt
+Activation is optional because uv finds `.venv` from the project directory.
+If you use a shell that needs activation:
+
+```bash
+# macOS / Linux
+source .venv/bin/activate
+```
+
+```powershell
+# Windows PowerShell
+.\.venv\Scripts\Activate.ps1
+```
+
+```bat
+:: Windows Command Prompt
+.venv\Scripts\activate.bat
 ```
 
 #### uv Project Workflow (pyproject.toml + uv.lock)
