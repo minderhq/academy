@@ -1,7 +1,7 @@
 ---
 Document ID: FAQ
 Title: "Minder Academy FAQ"
-Last Updated: 2026-10-24
+Last Updated: 2026-10-27
 Status: Complete
 Difficulty: Beginner
 Tags: ['faq', 'llm', 'llmops']
@@ -17,7 +17,7 @@ Tags: ['faq', 'llm', 'llmops']
 
 ### What is Minder Academy?
 
-Minder Academy is a comprehensive 7-phase learning path for mastering AI infrastructure, model internals, quantization, fine-tuning, RAG systems, and production deployment. It consists of 520 documents across 7 phases, 16 hands-on labs (+15 solutions), 47 experiments, 16 tutorials, and 81 cheat sheets.
+Minder Academy is a seven-phase curriculum covering AI infrastructure, model internals, quantization, fine-tuning, RAG, and production deployment. The repository includes 520 indexed documents, 15 hands-on labs with 15 worked solutions, 47 experiment files, 15 tutorials, and 80 cheat sheets. Browse the [master index](MASTER-INDEX.md) or jump directly to [labs](../learning-resources/labs/README.md), [tutorials](../learning-resources/tutorials/README.md), and [cheat sheets](../learning-resources/cheat-sheets/README.md).
 
 ### Who is this for?
 
@@ -56,10 +56,10 @@ You'll learn:
 
 Start here:
 
-1. **[README.md](../../README.md)** - Project overview
-2. **[VOLUME-GUIDE.md](VOLUME-GUIDE.md)** - Overview of all 7 phases
-3. **[0000-LEARNING-PATH.md](0000-LEARNING-PATH.md)** - Choose your learning path
-4. **[PROGRESS-TRACKER.md](PROGRESS-TRACKER.md)** - Track your progress
+1. **[QUICK-START.md](QUICK-START.md)** - Run a local model and try your first prompt
+2. **[0000-LEARNING-PATH.md](0000-LEARNING-PATH.md)** - Choose a study route
+3. **[VOLUME-GUIDE.md](VOLUME-GUIDE.md)** - Compare all seven curriculum volumes
+4. **[PROGRESS-TRACKER.md](PROGRESS-TRACKER.md)** - Record completed modules and checkpoints
 
 ### Do I need to complete phases in order?
 

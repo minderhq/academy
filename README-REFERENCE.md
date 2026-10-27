@@ -189,8 +189,8 @@ After completing Minder Academy, you will be able to:
 - Monitoring and observability recipes (Prometheus, Grafana, Loki) in the Phase 1 curriculum
 
 ### 📚 Rich Learning Resources
-- **16 hands-on lab files** with solutions (LAB-000 setup + LAB-001 to LAB-014 system, incl. section overview)
-- **16 tutorials** with step-by-step instructions (incl. section overview)
+- **15 hands-on labs** with 15 worked solutions (LAB-000 setup + LAB-001 to LAB-014)
+- **15 tutorials** with step-by-step instructions
 - **23 project files** for capstone projects (incl. section overview)
 - **81 cheat sheets** for quick reference (incl. section overview)
 
@@ -1366,7 +1366,7 @@ docker compose -f configs/docker-compose.yml up -d qdrant
 | Resource | Count |
 |----------|------:|
 | Learning Resources (labs, tutorials, projects, cheat sheets) | 165 |
-| Hands-on Labs (LAB-000 setup + LAB-001 to LAB-014 system) | 16 |
+| Hands-on Labs (LAB-000 setup + LAB-001 to LAB-014) | 15 |
 | Experiments | 47 |
 | QUIZ Files | 33 |
 | PRACTICE Files | 33 |

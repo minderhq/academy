@@ -459,6 +459,11 @@ Tags: ['maintenance', 'navigation', 'llm']
 
 ### File Counts
 
+These are directory/fleet counts, not addends: phase documents overlap with
+the phase, module, assessment, and practice rows, while resource-directory
+counts include their index README. For one deduplicated repository total, use
+the [Sitemap statistics](SITEMAP.md#statistics).
+
 | Category | Count |
 |----------|------:|
 | **Phase READMEs** | 7 |
@@ -479,18 +484,13 @@ Tags: ['maintenance', 'navigation', 'llm']
 | **Solutions** | 3 |
 | **Diagrams** | 4 |
 | **Meta Docs** | 20 |
-| **TOTAL** | **639** |
 
-### Content Statistics
+### Corpus Overview
 
-| Metric | Value |
-|--------|------:|
-| **Total Lines** | 269,603 |
-| **Total Words** | ~1.24 million |
-| **Estimated Print Pages** | ~2,020 |
-| **Condensed Book Pages** | ~200 |
-| **Code Examples** | 2,000+ |
-| **Diagrams** | 100+ |
+The current inventory covers 520 Markdown files under `docs/`, organized into
+7 phases and 33 modules, alongside 20 executable notebooks and 47 experiment
+files. See the [Sitemap](SITEMAP.md#statistics) for the deduplicated total and
+the inventory's counting rules.
 
 ---
 
