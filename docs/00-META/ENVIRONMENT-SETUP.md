@@ -132,6 +132,11 @@ sudo usermod -aG docker $USER
 docker --version
 ```
 
+If you added yourself to the `docker` group, sign out and back in before
+running Docker without `sudo`. This group grants root-level privileges; only
+add trusted administrators. For a daemon that runs without root privileges,
+consider [Docker rootless mode](https://docs.docker.com/engine/security/rootless/).
+
 ---
 
 ### Step 3: Python Environment (uv)
@@ -370,13 +375,17 @@ ollama pull mistral:7b
 
 **Linux only:**
 ```bash
-# Fix permission issue
-sudo usermod -aG docker $USER
-
-# Log out and log back in
-# OR run without sudo (temporary)
-sudo chmod 666 /var/run/docker.sock
+# Check whether Docker works with administrator privileges
+sudo docker ps
 ```
+
+If that works, sign out and back in if you have just joined the `docker` group.
+Membership grants root-level privileges, so add only trusted administrators.
+For a daemon that runs without root privileges, use
+[Docker rootless mode](https://docs.docker.com/engine/security/rootless/).
+Do not make `/var/run/docker.sock` world-writable; that gives every local user
+control of the Docker daemon. See Docker's [Linux post-installation steps](https://docs.docker.com/engine/install/linux-postinstall/)
+for the full setup guidance.
 
 ---
 
