@@ -286,17 +286,14 @@ def on_post_build(config, **kwargs):
     #    can never be doubled.
     th_re = re.compile(r"<th\b(?![^>]*\bscope=)([^>]*)>")
     # 9) Material's skip link ("Skip to content", the first focusable element)
-    #    targets the page h1 by id, but the h1 carries no tabindex - the
-    #    tick-893 census measured 442/442 pages. Activating the link scrolls
-    #    the viewport without moving keyboard focus: browsers that do not
-    #    transfer focus to non-interactive targets (Safari) leave focus on
-    #    the skip link itself, and screen readers that follow focus rather
-    #    than scroll stay at the top - the skip becomes a visual-only jump
-    #    (WCAG 2.4.1 bypass blocks). tabindex="-1" on the target makes it
-    #    programmatically focusable, the canonical skip-link pattern
-    #    (WAI tutorials); no visual change, the attribute is not focusable by
-    #    Tab. Guarded on absence of tabindex= and anchored to the exact id
-    #    the skip link references, so an upstream change cannot be doubled.
+    #    targets the first content heading by id. The generated site currently
+    #    uses h2 targets, but any heading level can be emitted; non-interactive
+    #    headings without tabindex only scroll the viewport, so browsers that
+    #    do not transfer focus (Safari) leave keyboard focus on the skip link
+    #    and screen readers that follow focus remain at the top (WCAG 2.4.1).
+    #    tabindex="-1" makes the exact target programmatically focusable
+    #    without adding it to the Tab order (WAI guidance). Match h1-h6 and
+    #    guard on absence of tabindex so an upstream change cannot be doubled.
     skip_re = re.compile(r'<a\b(?=[^>]*\bclass="[^"]*md-skip)[^>]*\bhref="#([^"]*)"')
     # 10) Material 9.7.7 marks the active header tab with the
     #     md-tabs__item--active class on the <li> only - a purely visual CSS
@@ -1031,18 +1028,18 @@ def on_post_build(config, **kwargs):
                 retitled += 1
         new_text = th_re.sub(_th, new_text)
         new_text = footer_re.sub(_footer, new_text)
-        # skip-link focus target (9): tabindex="-1" on the exact h1 the skip
-        # link references, so activating the skip moves focus, not just scroll
+        # skip-link focus target (9): tabindex="-1" on the exact heading the
+        # skip link references, so activating the skip moves focus, not just scroll
         mskip = skip_re.search(new_text)
         if mskip:
             frag = mskip.group(1)
-            def _h1(m):
+            def _heading(m):
                 nonlocal skipped
                 skipped += 1
                 return m.group(0)[:-1] + ' tabindex="-1">'
             new_text = re.sub(
-                r'<h1\b(?![^>]*\btabindex=)(?=[^>]*\bid="' + re.escape(frag) + r'")([^>]*)>',
-                _h1, new_text, count=1)
+                r'<h[1-6]\b(?![^>]*\btabindex=)(?=[^>]*\bid="' + re.escape(frag) + r'")([^>]*)>',
+                _heading, new_text, count=1)
         # active header tab (10): aria-current="true" on the link inside the
         # active md-tabs__item li, the programmatic counterpart of the CSS
         # highlight
