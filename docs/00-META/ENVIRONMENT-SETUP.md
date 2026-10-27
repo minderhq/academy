@@ -325,10 +325,12 @@ uv pip install pandas numpy matplotlib
 uv pip install requests tqdm
 ```
 
-> NVIDIA GPU on Linux? Torch needs the CUDA wheel index:
-> `uv pip install torch --index-url https://download.pytorch.org/whl/cu130`.
-> `uv pip install` accepts every `pip install` flag, so any package
-> instructions elsewhere in the curriculum work unchanged.
+> **NVIDIA GPU?** Choose your OS, Python version, and compute platform in
+> [PyTorch's current install selector](https://pytorch.org/get-started/locally/),
+> then run its generated command. To use uv, replace `pip` with `uv pip` and
+> keep the selector's CUDA index and version pins. Driver and wheel support
+> vary by GPU and PyTorch release, so avoid copying a fixed CUDA wheel URL from
+> an older guide.
 
 ---
 
