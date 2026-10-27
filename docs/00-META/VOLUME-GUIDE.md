@@ -1,7 +1,7 @@
 ---
 Document ID: VOLUME-GUIDE
 Title: "Minder Academy: Volume Guide (Book Structure)"
-Last Updated: 2026-10-24
+Last Updated: 2026-10-27
 Status: Complete
 Difficulty: Beginner
 Tags: ['volume', 'roadmap', 'llm']
@@ -463,9 +463,9 @@ Minder Academy/docs/
 │   └── phase7-agentic/          # [7000] Agentic Systems
 │
 ├── learning-resources/          # Additional learning materials
-│   ├── tutorials/               # Step-by-step tutorials (16 files)
-│   ├── labs/                    # Hands-on lab exercises (16 labs + 15 solutions)
-│   ├── cheat-sheets/            # Quick reference guides (81 files)
+│   ├── tutorials/               # 15 tutorials + index README
+│   ├── labs/                    # 15 labs + index README; 15 solutions below
+│   ├── cheat-sheets/            # 80 cheat sheets + index README
 │   ├── troubleshooting/         # Common issues & solutions
 │   └── projects/                # Capstone projects (7 files)
 │
