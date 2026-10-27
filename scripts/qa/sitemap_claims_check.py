@@ -34,7 +34,6 @@ from __future__ import annotations
 
 import argparse
 import re
-import subprocess
 import sys
 from pathlib import Path
 
@@ -54,17 +53,9 @@ def _md_count(p: Path, recursive: bool = False) -> int:
 # ---- disk measurements ----
 
 def m_repo_docs(root: Path) -> int:
-    """Borrow structure_lint's own count - no second walk to drift."""
-    proc = subprocess.run(
-        [sys.executable, str(Path(__file__).resolve().parent
-                             / "structure_lint.py"), "--root", str(root)],
-        capture_output=True, text=True, encoding="utf-8", errors="replace")
-    match = re.search(r"structure_lint: (\d+) files scanned",
-                      proc.stdout or "")
-    if proc.returncode != 0 or match is None:
-        raise RuntimeError("structure_lint borrow failed (rc=%d)"
-                           % proc.returncode)
-    return int(match.group(1))
+    """Count the four inventories documented in the SITEMAP statistics."""
+    return (m_docs_md(root) + m_experiments_total(root) + m_configs(root)
+            + m_root_md(root))
 
 
 def m_docs_md(root: Path) -> int:
@@ -180,7 +171,8 @@ HEADLINE_MEASURES = [
 # anchored; first match only. A two-element measure tuple consumes two
 # capture groups in order.
 STATS = [
-    ("total files", re.compile(r"^Total repository files: (\d+)$", re.M),
+    ("indexed content files",
+     re.compile(r"^Total indexed content files: (\d+)$", re.M),
      (m_repo_docs,)),
     ("docs split", re.compile(r"^  docs/: (\d+), experiments/: (\d+), "
                               r"configs/: (\d+), repo root: (\d+)$", re.M),

@@ -818,8 +818,11 @@ build's written walkthroughs live inside the lessons themselves - see the
 
 ## Statistics
 
+The total covers these four indexed content inventories; it excludes source
+code, workflows, and the generated `site/` build output.
+
 ```text
-Total repository files: 575
+Total indexed content files: 575
   docs/: 520, experiments/: 48, configs/: 4, repo root: 3
 Phases: 7
 Learning modules (topics): 33

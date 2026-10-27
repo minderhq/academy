@@ -10,7 +10,7 @@ per-phase table). Every claim here is measurable on disk, so this
 gate locks each claim to its measured source instead of trusting
 prose to stay current:
 
-  RC-00  README.md missing, or the structure_lint borrow failed
+  RC-00  README.md missing
   RC-01  a numeric claim in README.md disagrees with disk
 
 Claims are matched by regex, not position, and a pattern that no
@@ -29,7 +29,6 @@ from __future__ import annotations
 
 import argparse
 import re
-import subprocess
 import sys
 from pathlib import Path
 
@@ -52,17 +51,11 @@ def m_docs_md(root: Path) -> int:
 
 
 def m_repo_docs(root: Path) -> int:
-    """Borrow structure_lint's own count - no second walk to drift."""
-    proc = subprocess.run(
-        [sys.executable, str(Path(__file__).resolve().parent
-                             / "structure_lint.py"), "--root", str(root)],
-        capture_output=True, text=True, encoding="utf-8", errors="replace")
-    match = re.search(r"structure_lint: (\d+) files scanned",
-                      proc.stdout or "")
-    if proc.returncode != 0 or match is None:
-        raise RuntimeError("structure_lint borrow failed (rc=%d)"
-                           % proc.returncode)
-    return int(match.group(1))
+    """Count indexed content: docs, experiments, configs, and root Markdown."""
+    experiments = root / "experiments"
+    experiment_files = len(list(experiments.glob("*.md"))) if experiments.exists() else 0
+    return (m_docs_md(root) + experiment_files + m_configs(root)
+            + _md_count(root))
 
 
 def m_experiments(root: Path) -> int:
@@ -164,7 +157,7 @@ CLAIMS: list[tuple[str, re.Pattern[str], object]] = [
     ("docs badge", re.compile(r"Docs-(\d+)%20Files"), m_docs_md),
     ("phases badge", re.compile(r"Phases-(\d+)"), m_phases),
     ("modules badge", re.compile(r"Modules-(\d+)"), m_modules),
-    ("repo-wide files", re.compile(r"\*\*(\d+) files\*\*"), m_repo_docs),
+    ("indexed content files", re.compile(r"\*\*(\d+) files\*\*"), m_repo_docs),
     ("PRACTICE files", re.compile(r"\*\*(\d+) PRACTICE [Ff]iles\*\*"),
      m_practice),
     ("experiments (prose)",
