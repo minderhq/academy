@@ -1,7 +1,7 @@
 ---
 Document ID: CHEAT-SHEET-002
 Title: "CHEAT-SHEET-002: Python for AI/ML"
-Last Updated: 2026-10-08
+Last Updated: 2026-10-27
 Status: Complete
 Difficulty: Intermediate
 Tags: ['cheatsheet', 'math', 'pytorch']
@@ -24,8 +24,11 @@ uv venv --python 3.13
 # Activate (Linux/Mac)
 source .venv/bin/activate
 
-# Activate (Windows)
-.venv\Scripts\activate
+# Activate (Windows PowerShell)
+.\.venv\Scripts\Activate.ps1
+
+# Activate (Windows Command Prompt)
+.venv\Scripts\activate.bat
 
 # Deactivate
 deactivate

@@ -1,7 +1,7 @@
 ---
 Document ID: ENVIRONMENT-SETUP
 Title: "Environment Setup Guide"
-Last Updated: 2026-10-22
+Last Updated: 2026-10-27
 Status: Complete
 Difficulty: Beginner
 Tags: ['setup', 'docker', 'infrastructure']
@@ -9,7 +9,7 @@ Tags: ['setup', 'docker', 'infrastructure']
 
 # Environment Setup Guide
 
-**Last Updated:** 2026-10-22
+**Last Updated:** 2026-10-27
 
 **Reading Time:** 15 minutes
 
@@ -196,7 +196,8 @@ uv venv --python 3.13
 # Activate — optional: uv finds .venv automatically when run
 # inside the project directory
 source .venv/bin/activate    # Mac/Linux
-.venv\Scripts\activate       # Windows
+.\.venv\Scripts\Activate.ps1 # Windows PowerShell
+.venv\Scripts\activate.bat   # Windows Command Prompt
 ```
 
 #### uv Project Workflow (pyproject.toml + uv.lock)
@@ -524,7 +525,11 @@ Before starting tutorials, verify:
 ### Software Verification
 - [ ] Docker running: `docker ps`
 - [ ] uv installed: `uv --version`
-- [ ] Virtual environment active: `which python` (or `.venv` exists in the project)
+- [ ] Virtual environment active. Verify it in your shell:
+  - macOS/Linux: `which python`
+  - PowerShell: `Get-Command python`
+  - Command Prompt: `where python`
+  - uv also finds `.venv` when run from the project directory
 - [ ] Ollama running: `ollama list`
 - [ ] Model downloaded: `ollama pull mistral:7b`
 

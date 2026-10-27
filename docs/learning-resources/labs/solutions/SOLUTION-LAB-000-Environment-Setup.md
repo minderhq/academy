@@ -1,7 +1,7 @@
 ---
 Document ID: SOLUTION-LAB-000
 Title: "SOLUTION-LAB-000: Environment Setup"
-Last Updated: 2026-10-13
+Last Updated: 2026-10-27
 Status: Complete
 Difficulty: Beginner
 Tags: ['solution', 'setup', 'docker']
@@ -57,8 +57,9 @@ Download and install Docker Desktop from [https://www.docker.com/products/docker
 # Create the project environment with uv
 # (uv downloads Python 3.13 itself if it is missing)
 uv venv --python 3.13
-source .venv/bin/activate  # Mac/Linux
-.venv\Scripts\activate     # Windows
+source .venv/bin/activate       # macOS/Linux
+.\.venv\Scripts\Activate.ps1  # Windows PowerShell
+.venv\Scripts\activate.bat    # Windows Command Prompt
 
 # Install packages (uv finds the active .venv automatically)
 uv pip install torch torchvision torchaudio

@@ -1,7 +1,7 @@
 ---
 Document ID: TROUBLESHOOTING-Common-Issues
 Title: "TROUBLESHOOTING: Common Issues & Solutions"
-Last Updated: 2026-10-22
+Last Updated: 2026-10-27
 Status: Complete
 Difficulty: Intermediate
 Tags: ['troubleshooting', 'docker', 'llm']
@@ -451,8 +451,9 @@ python --version
 ```bash
 # Create the project environment with uv
 uv venv --python 3.13
-source .venv/bin/activate  # Linux/Mac
-.venv\Scripts\activate     # Windows
+source .venv/bin/activate       # macOS/Linux
+.\.venv\Scripts\Activate.ps1  # Windows PowerShell
+.venv\Scripts\activate.bat    # Windows Command Prompt
 
 # Install from the project manifest (pyproject.toml + uv.lock)
 uv sync --locked

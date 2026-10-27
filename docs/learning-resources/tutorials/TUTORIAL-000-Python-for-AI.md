@@ -1,7 +1,7 @@
 ---
 Document ID: TUTORIAL-000
 Title: "TUTORIAL-000: Python for AI (Complete Beginner)"
-Last Updated: 2026-10-13
+Last Updated: 2026-10-27
 Status: Complete
 Difficulty: Beginner
 Estimated Time: 20 hours
@@ -964,8 +964,11 @@ Virtual environments isolate project dependencies.
 # Create a project environment (uv downloads Python 3.13 if missing)
 uv venv --python 3.13
 
-# Activate (Windows)
-.venv\Scripts\activate
+# Activate (Windows PowerShell)
+.\.venv\Scripts\Activate.ps1
+
+# Activate (Windows Command Prompt)
+.venv\Scripts\activate.bat
 
 # Activate (Mac/Linux)
 source .venv/bin/activate

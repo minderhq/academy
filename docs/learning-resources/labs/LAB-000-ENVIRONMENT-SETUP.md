@@ -1,7 +1,7 @@
 ---
 Document ID: LAB-000
 Title: "LAB-000: Environment Setup"
-Last Updated: 2026-10-13
+Last Updated: 2026-10-27
 Status: Complete
 Difficulty: Beginner
 Estimated Time: 1 hour
@@ -221,19 +221,31 @@ uv venv --python 3.13
 # Activate (Mac/Linux)
 source .venv/bin/activate
 
-# Activate (Windows)
-.venv\Scripts\activate
+# Activate (Windows PowerShell)
+.\.venv\Scripts\Activate.ps1
+
+# Activate (Windows Command Prompt)
+.venv\Scripts\activate.bat
 
 # Plain `python -m venv .venv` also works — same layout, and
 # `uv pip install` operates inside any active virtualenv
 ```
 
-**Verify Activation:**
+**Verify Activation** (use the command for your shell):
 
 ```bash
 # You should see (.venv) in your prompt
+# macOS/Linux
 which python
 # Should show: ~/academy/.venv/bin/python
+
+# Windows PowerShell
+Get-Command python
+# Should point into .venv\Scripts\python.exe
+
+# Windows Command Prompt
+where python
+# The first result should point into .venv\Scripts\python.exe
 ```
 
 **Install Essential Packages:**
@@ -431,11 +443,10 @@ With your environment ready:
 
 2. **Create Startup Script:**
    ```bash
-   # Start everything quickly
+   # macOS/Linux Bash startup script; on Windows PowerShell run `ollama serve` separately
    #!/bin/bash
    cd ~/academy
    source .venv/bin/activate  # Mac/Linux
-   # .venv\Scripts\activate   # Windows
    ollama serve &
    ```
 
