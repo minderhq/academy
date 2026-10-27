@@ -169,11 +169,13 @@ Verify:
 uv --version
 ```
 
-> **Prefer pip?** uv is a drop-in replacement, but a system Python 3.13+ with
+> **Prefer pip?** uv is a drop-in replacement, but a system Python 3.13 with
 > `python -m venv` and plain `pip` still works for every lesson. On Windows,
 > install Python from [python.org](https://www.python.org/downloads/) (check
-> "Add Python to PATH"); on macOS use `brew install python@3.13`; on Linux
-> `sudo apt install -y python3.13 python3-pip python3-venv`.
+> "Add Python to PATH"); on macOS use `brew install python@3.13`. On Linux,
+> install Python 3.13 from your distribution if available, or let uv manage it
+> with `uv python install 3.13` (recommended). Package names and available
+> Python versions vary by distribution release.
 
 #### Create the Project Environment
 
@@ -194,10 +196,9 @@ source .venv/bin/activate    # Mac/Linux
 
 #### uv Project Workflow (pyproject.toml + uv.lock)
 
-The `uv pip` interface above is the pip-compatible layer. For real
-projects, uv's own workflow is the 2026 standard: dependencies are
-declared in `pyproject.toml` and pinned by a `uv.lock` lockfile, so
-every machine resolves the exact same versions.
+The `uv pip` interface above is the pip-compatible layer. For projects,
+declare dependencies in `pyproject.toml` and pin them with `uv.lock` so
+machines and CI use reproducible versions.
 
 ```bash
 # Start a project (creates pyproject.toml + .venv automatically)
@@ -226,7 +227,7 @@ How the two layers relate:
 
 #### Code Quality Tooling (ruff, zero-install via uvx)
 
-For linting and formatting, the 2026 standard is [ruff](https://docs.astral.sh/ruff/) — one Rust-fast tool that replaces the old flake8 + black + isort stack. You do not even need to install it: `uvx` runs a tool in an ephemeral, cached environment.
+For linting and formatting, [ruff](https://docs.astral.sh/ruff/) combines linting and formatting in one fast tool. You do not even need to install it: `uvx` runs a tool in an ephemeral, cached environment.
 
 ```bash
 # Lint and format the project - no install step at all
@@ -421,7 +422,7 @@ model.to(device)
 1. **Check Python Version:**
 ```bash
 python --version
-# Should be 3.13 or higher
+# Use Python 3.13, the repository baseline; check a lesson's dependency support before using a newer release
 ```
 
 2. **Use uv (recommended) or pyenv:**

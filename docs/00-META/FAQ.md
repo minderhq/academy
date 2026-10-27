@@ -131,16 +131,15 @@ Start here:
 
 **Essential:**
 
-- Linux (Ubuntu 22.04 recommended) or WSL2 on Windows
-- Python 3.13+
+- Linux (Ubuntu 24.04 LTS is a good default; use another release when your GPU stack supports it) or WSL2 on Windows
+- Python 3.13 (the repository baseline; check lesson dependencies before choosing a newer interpreter)
 - Docker
 - Git
 
 **For GPU Work:**
 
-- NVIDIA Drivers (525+)
-- CUDA Toolkit 11.8+
-- cuDNN
+- NVIDIA driver supported by your GPU and the framework's selected CUDA runtime
+- Install the CUDA Toolkit/cuDNN only when the lesson or framework setup explicitly requires it; prebuilt framework wheels may include the needed CUDA runtime
 
 **Optional (Recommended):**
 
@@ -478,7 +477,7 @@ Use **[PROGRESS-TRACKER.md](PROGRESS-TRACKER.md)** to:
 **Yes, but recommend WSL2:**
 
 - Install WSL2 (Windows Subsystem for Linux)
-- Use Ubuntu 22.04 LTS
+- Use an Ubuntu LTS release supported by your GPU driver and CUDA/framework version (24.04 is a current default)
 - Follow Linux instructions
 - GPU passthrough works with WSL2
 
