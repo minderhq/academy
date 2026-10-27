@@ -1,7 +1,7 @@
 ---
 Document ID: MASTER-INDEX
 Title: "Minder Academy Master Index"
-Last Updated: 2026-10-24
+Last Updated: 2026-10-27
 Status: Complete
 Difficulty: Beginner
 Tags: ['maintenance', 'navigation', 'llm']
@@ -12,7 +12,7 @@ Tags: ['maintenance', 'navigation', 'llm']
 
 **Version:** 4.5
 
-**Last Updated:** 2026-10-24
+**Last Updated:** 2026-10-27
 
 **Total Files:** 520 markdown files (docs/)
 
@@ -32,7 +32,7 @@ Tags: ['maintenance', 'navigation', 'llm']
 
 ### For New Users
 
-1. **[Quick Start Guide](QUICK-START.md)** - 5 minute setup
+1. **[Quick Start Guide](QUICK-START.md)** - 30-minute first local model walkthrough
 2. **[Learning Path](0000-LEARNING-PATH.md)** - Choose your track
 3. **[Environment Setup](ENVIRONMENT-SETUP.md)** - System requirements
 4. **[FAQ](FAQ.md)** - Common questions

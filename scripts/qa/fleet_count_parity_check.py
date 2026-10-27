@@ -3,8 +3,9 @@
 
 Count claims are the numbers a learner plans their weeks from: the
 MASTER-INDEX File Counts table (the whole-corpus inventory), the
-SITEMAP Experiments header (the exhaustive per-fleet listing) and
-the README Experiments section (the front-door table of contents).
+SITEMAP Experiments header (the exhaustive per-fleet listing), the
+README Experiments summary (the front door), and the linked
+README-REFERENCE Experiments section (the exhaustive inventory).
 Nothing locked any of them to disk. Born tick-559 census: MI and
 SITEMAP were correct, but the README front door hid 16 of the 47
 on-disk experiments - its summary said "46 Experiment Files"
@@ -47,10 +48,10 @@ FC-02  MI TOTAL row equals the sum of the category rows.
 FC-03  SITEMAP "## Experiments (N files: M experiments + 1 TEMPLATE)"
        header equals disk (N = all experiments/*.md, M = EXP_*.md).
 FC-04  README "N Experiment Files" summary equals disk EXP count.
-FC-05  README Experiments section lists every EXP file on disk in
-       both directions (an orphan or a ghost link is a finding).
-FC-06  each README group header's "(N)" equals the EXP links under
-       that group.
+FC-05  README-REFERENCE Experiments section lists every EXP file on
+       disk in both directions (an orphan or ghost link is a finding).
+FC-06  each README-REFERENCE group header's "(N)" equals the EXP
+       links under that group.
 FC-07  the seven docs/volumes/VOLUME-*.md "## Volume N Statistics"
        tables equal their own volume's curated path: Core/Optional
        Documents equal the "### Core Content (Required)" /
@@ -227,7 +228,7 @@ def main() -> int:
                         % (m_sm.group(1), m_sm.group(2), n_all,
                            len(exp_files)))
 
-    # --- FC-04/05/06: README experiments section vs disk -----------------
+    # --- FC-04/05/06: README experiments inventory vs disk ---------------
     rd = (args.root / "README.md").read_text(encoding="utf-8")
     if "## Experiments" not in rd:
         findings.append("FC-04 README has no '## Experiments' section")
@@ -240,7 +241,16 @@ def main() -> int:
             findings.append("FC-04 README summary claims %s Experiment "
                             "Files, disk has %d"
                             % (m_sum.group(1), len(exp_files)))
-        listed = set(README_LINK.findall(sec))
+        # The root README stays a short entry point. Its full experiment
+        # inventory lives in README-REFERENCE.md; keep validating every id
+        # and category count there instead of duplicating 47 links up front.
+        reference = args.root / "README-REFERENCE.md"
+        inventory = (reference.read_text(encoding="utf-8")
+                     if reference.is_file() else rd)
+        inventory_sec = (inventory.split("## Experiments", 1)[1]
+                         .split("\n## ", 1)[0]
+                         if "## Experiments" in inventory else sec)
+        listed = set(README_LINK.findall(inventory_sec))
         on_disk = {p.stem for p in exp_files}
         for stem in sorted(on_disk - listed):
             findings.append("FC-05 %s exists on disk but is listed nowhere "
@@ -250,10 +260,11 @@ def main() -> int:
                             "on disk" % stem)
         # FC-06: per-group header vs the links under it
         marks = [(m.group(1), int(m.group(2)), m.start(), m.end())
-                 for m in README_GROUP.finditer(sec)]
+                 for m in README_GROUP.finditer(inventory_sec)]
         for i, (name, n, _, end) in enumerate(marks):
-            stop = marks[i + 1][2] if i + 1 < len(marks) else len(sec)
-            real = len(set(README_LINK.findall(sec[end:stop])))
+            stop = (marks[i + 1][2] if i + 1 < len(marks)
+                    else len(inventory_sec))
+            real = len(set(README_LINK.findall(inventory_sec[end:stop])))
             if n != real:
                 findings.append("FC-06 README group '%s' header claims %d, "
                                 "its block links %d" % (name, n, real))

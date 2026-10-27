@@ -7,7 +7,7 @@ platform will render every one of these as a link a learner can
 click - a dead arxiv ID, a taken-down YouTube video or a 404'd docs
 page is exactly the kind of rot internal checks cannot see.
 
-Scope: http(s) URLs in PROSE only (outside code fences) under
+Scope: http(s) URLs in PROSE only (outside code fences and inline code) under
 docs/ - fenced URLs are code examples (localhost, placeholders)
 and are not learner-clickable. Obviously non-checkable hosts
 (localhost, 127.0.0.0/8, example.com, *.local, <placeholders>)
@@ -49,6 +49,7 @@ from pathlib import Path
 
 FENCE = re.compile(r"^\s*(`{3,}|~{3,})\s*([A-Za-z0-9_+-]*)\s*$")
 URL = re.compile(r"https?://[^\s\)\]\`>'\"<]+")
+INLINE_CODE = re.compile(r"`[^`]+`")
 FM_CLOSE = re.compile(r"^---\s*$")
 NOT_CHECKABLE = re.compile(
     r"^https?://(localhost|127\.\d+\.\d+\.\d+"
@@ -97,7 +98,8 @@ def collect(root: Path) -> dict[str, tuple[str, int]]:
                 continue
             if infence:
                 continue
-            for m in URL.finditer(ln):
+            prose = INLINE_CODE.sub("", ln)
+            for m in URL.finditer(prose):
                 seen.setdefault(m.group(0).rstrip(".,;:!"),
                                 (rel, i))
     return seen

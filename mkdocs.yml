@@ -15,10 +15,9 @@ hooks:
   - hooks.py
 
 # Corpus docs link to repo-root companion material (experiments/, configs/,
-# README.md) that lives outside docs/. hooks.py copies it into site/ after
-# the build, so these links resolve on the deployed site; mkdocs itself must
-# not flag them, hence not_found stays at info (the QA fleet's linkcheck and
-# casecheck remain the in-corpus link authority).
+# README.md and README-REFERENCE.md) that live outside docs/. hooks.py copies
+# them into site/ after the build so these links resolve on the deployed site.
+# MkDocs must not flag them; the QA linkcheck and casecheck validate the source.
 validation:
   links:
     not_found: info
@@ -683,14 +682,12 @@ plugins:
         - stopWordFilter
         - trimmer
 
-  # Social cards: one branded PNG per page, wired to og:image /
-  # twitter:image - the last missing piece of the share-preview stack
-  # (og:title/og:description are per-page since the earlier head work,
-  # og:image measured 0/442). Indigo background is the same brand value
-  # the theme-color meta pins (primary: indigo in both schemes). Needs
-  # pillow at build time: the deploy workflow installs
-  # mkdocs-material[imaging].
+  # Generate branded share cards in CI, where the deploy workflow installs
+  # mkdocs-material[imaging]. Local builds keep the dependency-free text
+  # preview tags from overrides/main.html and avoid Cairo native-library
+  # warnings on developer machines without the imaging stack.
   - social:
+      enabled: !ENV [CI, false]
       cards: true
       cards_layout_options:
         background_color: "#3f51b5"

@@ -10,6 +10,7 @@ on:
       - "hooks.py"
       - "gh_slugify.py"
       - "README.md"
+      - "README-REFERENCE.md"
       # hooks.py copies experiments/ and configs/ verbatim into site/ after
       # the build - they are live site content (served as raw .md/.yml), so
       # changes to them must trigger the deploy like any other site face
@@ -92,6 +93,7 @@ jobs:
           # gh_slugify (GitHub-accurate toc slugs) is a repo-local module
           # resolved by the !!python/name tag in mkdocs.yml
           PYTHONPATH: ${{ github.workspace }}
+          CI: "true"
         run: mkdocs build --clean
 
       - name: Upload Pages artifact

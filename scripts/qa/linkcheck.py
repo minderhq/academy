@@ -27,7 +27,9 @@ import re
 import sys
 from collections import defaultdict
 
-SKIP_DIRS = {".git", ".claude", "node_modules", "__pycache__", ".venv", "venv"}
+# Materialized MkDocs output is a derived copy, not source content. Scanning
+# it duplicates links and treats repository-relative README links as broken.
+SKIP_DIRS = {".git", ".claude", "node_modules", "__pycache__", ".venv", "venv", "site"}
 MD_LINK = re.compile(r"\[[^\]]*\]\(([^)\s]+)(?:\s+\"[^\"]*\")?\)")
 INLINE_CODE = re.compile(r"`[^`]+`")
 FENCE = re.compile(r"^\s*(`{3,}|~{3,})\s*([A-Za-z0-9_+-]*)\s*$")

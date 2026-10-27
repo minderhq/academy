@@ -180,7 +180,7 @@ HEADLINE_MEASURES = [
 # anchored; first match only. A two-element measure tuple consumes two
 # capture groups in order.
 STATS = [
-    ("total files", re.compile(r"^Total markdown files: (\d+)$", re.M),
+    ("total files", re.compile(r"^Total repository files: (\d+)$", re.M),
      (m_repo_docs,)),
     ("docs split", re.compile(r"^  docs/: (\d+), experiments/: (\d+), "
                               r"configs/: (\d+), repo root: (\d+)$", re.M),

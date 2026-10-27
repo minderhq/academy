@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """mkdocs hook: publish repo-root companion material alongside the built site.
 
-Corpus docs link to repo-root experiments/, configs/, and README.md via
+Corpus docs link to repo-root experiments/, configs/, and README files via
 relative paths (e.g. ../../experiments/EXP_1101_GPON.md). mkdocs builds only
 docs/, so on the deployed site those links would 404. This hook copies the
 companion material into site/ after the build so every link resolves; GitHub
@@ -185,6 +185,10 @@ def on_post_build(config, **kwargs):
     if readme.is_file():
         shutil.copy2(readme, site / "README.md")
         copied.append("README.md")
+    reference = root / "README-REFERENCE.md"
+    if reference.is_file():
+        shutil.copy2(reference, site / "README-REFERENCE.md")
+        copied.append("README-REFERENCE.md")
     # robots.txt for the crawler entry point: allow all + point at the
     # sitemap.xml mkdocs itself emits into site/. Generated here rather than
     # shipped as docs/robots.txt - mkdocs copies non-md docs/ files verbatim,

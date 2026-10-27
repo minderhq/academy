@@ -72,7 +72,7 @@ Semantic similarity ≈ 0.7-0.9
 **If you're new to these concepts:**
 
 1. **Information Retrieval (30 min):**
-    - [Introduction to Information Retrieval](https://nlp.stanford.edu/IR-book/)
+    - [Introduction to Information Retrieval](https://nlp.stanford.edu/IR-book/information-retrieval-book.html)
     - Chapters 1-3
 
 2. **Vector Embeddings (45 min):**

@@ -1,7 +1,7 @@
 ---
 Document ID: QUICK-START
 Title: "QUICK START GUIDE: Get Started in 30 Minutes"
-Last Updated: 2026-10-24
+Last Updated: 2026-10-27
 Status: Complete
 Difficulty: Beginner
 Tags: ['quickstart', 'tutorial', 'llm']
@@ -19,7 +19,7 @@ In the next 30 minutes, you will:
 
 1. ✅ Install Ollama (easiest LLM runner)
 2. ✅ Run your first local AI model
-3. ✅ Chat with Mistral 7B
+3. ✅ Chat with Qwen3 4B
 4. ✅ Understand the basics
 5. ✅ Know where to go next
 
@@ -29,7 +29,7 @@ In the next 30 minutes, you will:
 
 ### Hardware Requirements
 - Computer (Windows, Mac, or Linux)
-- 8GB+ RAM (16GB+ recommended)
+- 8GB+ RAM (16GB+ recommended for a smoother experience)
 - 10GB+ free disk space
 - Stable internet connection (for model download)
 
@@ -47,7 +47,7 @@ In the next 30 minutes, you will:
 
 **If you have limited resources:**
 
-- 8GB RAM: Use `mistral:7b` or `phi4-mini`
+- 8GB RAM: Start with `qwen3:4b`; close memory-heavy apps if needed
 - CPU-only: Models will run slower but work
 - Limited disk: Start with one model at a time
 
@@ -87,7 +87,7 @@ curl -fsSL https://ollama.com/install.sh | sh
 ollama --version
 ```
 
-Expected output: `ollama version is 0.x.y` - any recent build works
+The command prints the installed Ollama version. The exact format changes between releases.
 
 ---
 
@@ -96,23 +96,22 @@ Expected output: `ollama version is 0.x.y` - any recent build works
 Ollama makes it incredibly easy:
 
 ```bash
-# Pull Mistral 7B (recommended for beginners)
-ollama pull mistral:7b
+# Pull Qwen3 4B (a practical starting point for a typical laptop)
+ollama pull qwen3:4b
 
-# This downloads ~4GB - may take a few minutes
+# The model download is about 2.5 GB; allow extra disk space for runtime use.
 ```
 
 ### What's Happening?
-- Mistral 7B is a powerful open-source LLM
-- 7 billion parameters (small but capable)
-- Requires ~8GB RAM to run
-- Perfect for learning and experimentation
+- Qwen3 4B is an open-weight model with 4 billion parameters
+- The Ollama Q4_K_M download is about 2.5 GB; memory use also depends on context length and other running apps
+- A 7B model such as Mistral is an option for machines with more memory
+- Model size and available tags can change; check the [Qwen3 model page](https://ollama.com/library/qwen3:4b) before downloading
 
 ### Other Options (for later)
 ```bash
-ollama pull llama3.2:3b    # Meta's Llama 3.2
-ollama pull qwen3-coder     # Coding assistant
-ollama pull phi4-mini       # Small & fast
+ollama pull mistral:7b      # Mistral 7B, needs more memory
+ollama pull llama3.2:3b     # Meta's Llama 3.2
 ```
 
 ### Troubleshooting Model Download
@@ -123,7 +122,7 @@ ollama pull phi4-mini       # Small & fast
 ping google.com
 
 # Try again (Ollama resumes automatically)
-ollama pull mistral:7b
+ollama pull qwen3:4b
 ```
 
 **"Connection refused" error?**
@@ -141,14 +140,13 @@ ollama pull mistral:7b
 ```bash
 # Your system might not have enough RAM
 # Try a smaller model:
-ollama pull phi4-mini       # Only ~2.5GB
-ollama pull mistral:7b      # Explicit 7B version
+ollama pull qwen3:1.7b     # Use a smaller model
 ```
 
 **Verify model downloaded successfully:**
 ```bash
 ollama list
-# Should show: mistral:7b    ${SIZE}
+# Should show: qwen3:4b and its downloaded size
 ```
 
 ---
@@ -157,7 +155,7 @@ ollama list
 
 ### Simple Chat
 ```bash
-ollama run mistral:7b
+ollama run qwen3:4b
 ```
 
 Type your message and press Enter!
@@ -191,7 +189,7 @@ pip install ollama
 import ollama
 
 # Simple chat
-response = ollama.chat(model='mistral:7b', messages=[
+response = ollama.chat(model='qwen3:4b', messages=[
     {
         'role': 'user',
         'content': 'Why is the sky blue?'
@@ -233,7 +231,7 @@ class AIAssistant:
 
         # Get response from AI
         response = ollama.chat(
-            model='mistral:7b',
+            model='qwen3:4b',
             messages=self.history
         )
 
@@ -276,7 +274,7 @@ python ai_assistant.py
 | Concept | What It Means |
 |---------|---------------|
 | **LLM** | Large Language Model - AI that understands and generates text |
-| **Mistral 7B** | A specific model with 7 billion parameters |
+| **Qwen3 4B** | A model family; this guide uses its 4-billion-parameter variant |
 | **Ollama** | Tool to run LLMs locally on your computer |
 | **API** | Application Programming Interface - how code talks to AI |
 
@@ -336,14 +334,14 @@ You're now ready for the full learning journey!
 **Solution:**
 
 - Close other applications
-- Try a smaller model: `ollama pull phi4-mini`
+- Try a smaller model: `ollama pull qwen3:1.7b`
 - Add more RAM to your computer
 
 ### Issue: "Model download is slow"
 
 **Solution:**
 
-- Be patient, models are large (4GB+)
+- Allow time for the model download; this guide's model is about 2.5 GB
 - Try a different network
 - Use a download manager if needed
 
@@ -380,7 +378,7 @@ pip install ollama
 - **Hugging Face:** [https://huggingface.co/docs](https://huggingface.co/docs)
 
 ### Communities
-- **Ollama Discord:** [https://discord.gg/ollama](https://discord.gg/ollama)
+- **Ollama Discord:** [Join the Ollama community](https://discord.com/invite/ollama)
 - **r/LocalLLaMA:** [https://www.reddit.com/r/LocalLLaMA/](https://www.reddit.com/r/LocalLLaMA/)
 - **Hugging Face Forums:** [https://discuss.huggingface.co](https://discuss.huggingface.co)
 
@@ -398,7 +396,7 @@ You just completed your first step into the world of local AI!
 **What you can do now:**
 
 - ✅ Run AI models on your computer
-- ✅ Chat with Mistral 7B
+- ✅ Chat with Qwen3 4B
 - ✅ Build basic AI scripts
 - ✅ Understand the fundamentals
 

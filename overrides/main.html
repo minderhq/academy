@@ -1,10 +1,7 @@
 {#-
-  OpenGraph/Twitter share-preview metadata for every page - the academy is
-  shared as bare links in Discord/Slack/X and without these tags those
-  clients render no preview at all. Dependency-free on purpose: the social
-  plugin (og:image cards) needs cairosvg in every build environment, so we
-  ship the text-only preview tags and let Material's own description
-  resolution (page meta, else site_description) fill og:description.
+  OpenGraph/Twitter text metadata for every page. Local builds can omit the
+  imaging stack; CI enables Material's social plugin to add the branded
+  og:image cards. These text tags keep previews useful in both environments.
 -#}
 {% extends "base.html" %}
 

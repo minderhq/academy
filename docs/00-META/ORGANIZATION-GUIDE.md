@@ -1,7 +1,7 @@
 ---
 Document ID: ORGANIZATION-GUIDE
 Title: "Minder Academy Organization Guide"
-Last Updated: 2026-10-24
+Last Updated: 2026-10-27
 Status: Complete
 Difficulty: Beginner
 Tags: ['maintenance', 'navigation']
@@ -12,7 +12,7 @@ Tags: ['maintenance', 'navigation']
 
 **Version:** 4.2
 
-**Last Updated:** 2026-10-24
+**Last Updated:** 2026-10-27
 
 **Purpose:** Guide for understanding and maintaining the Minder Academy documentation structure
 
@@ -25,6 +25,7 @@ Tags: ['maintenance', 'navigation']
 ```text
 Minder Academy/
 ├── README.md                          # Main project README
+├── README-REFERENCE.md                # Full repository reference and detailed project guide
 ├── CHANGELOG.md                       # Release changelog
 ├── LICENSE                            # MIT License
 ├── mkdocs.yml                         # Site build configuration
@@ -59,14 +60,20 @@ Minder Academy/
 
 ## Documentation Structure
 
+Choose an entry point by task: learners should use [QUICK-START](QUICK-START.md)
+and then the [Learning Path](0000-LEARNING-PATH.md); readers looking up a
+specific topic can browse the [MASTER-INDEX](MASTER-INDEX.md); maintainers
+should use this guide and [QA-TOOLING](QA-TOOLING.md). The [SITEMAP](SITEMAP.md)
+is the complete file inventory.
+
 ### 00-META: Meta Documentation
 
 **Purpose:** Project-level documentation and guides
 
 ```text
 docs/00-META/
-├── MASTER-INDEX.md                   # ← Start here! Complete navigation
-├── QUICK-START.md                    # 5-minute setup guide
+├── MASTER-INDEX.md                   # Complete topic inventory for lookup
+├── QUICK-START.md                    # 30-minute first local model walkthrough
 ├── VOLUME-GUIDE.md                   # 7-volume curriculum
 ├── 0000-LEARNING-PATH.md             # Learning path selection
 ├── LEARNING-PATHS-DETAILED.md        # Detailed track guidance
@@ -168,12 +175,14 @@ docs/phases/
 
 ```text
 docs/learning-resources/
-├── tutorials/                        # 16 tutorial files
+├── tutorials/                        # 16 Markdown files: README + 15 tutorials
+│   ├── TUTORIAL-000-Python-for-AI.md
 │   ├── TUTORIAL-001-Hello-LLM.md
 │   ├── TUTORIAL-002-Docker-Essentials.md
 │   ├── TUTORIAL-003-RAG-Basics.md
 │   ├── ...
-│   └── TUTORIAL-013-AI-Security.md
+│   ├── TUTORIAL-013-AI-Security.md
+│   └── TUTORIAL-014-Production-LLM-Systems.md
 │
 ├── labs/                             # 15 lab files
 │   ├── LAB-000-ENVIRONMENT-SETUP.md
@@ -187,7 +196,7 @@ docs/learning-resources/
 │   ├── SOLUTION-LAB-001-Docker-LLM.md
 │   └── ...
 │
-├── cheat-sheets/                     # 81 cheat sheets
+├── cheat-sheets/                     # 81 Markdown files: README + 80 references
 │   ├── CHEAT-SHEET-001-Docker.md
 │   ├── CHEAT-SHEET-002-Python-AI.md
 │   ├── CHEAT-SHEET-003-Git.md

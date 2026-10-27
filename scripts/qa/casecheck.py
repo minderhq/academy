@@ -41,7 +41,9 @@ import re
 import sys
 import urllib.parse
 
-SKIP_DIRS = {".git", ".claude", "node_modules", "__pycache__", ".venv", "venv"}
+# Materialized MkDocs output is a derived copy, not source content. Scanning
+# it duplicates links and can report its generated README as an orphan.
+SKIP_DIRS = {".git", ".claude", "node_modules", "__pycache__", ".venv", "venv", "site"}
 LINK = re.compile(r"\]\(([^)\s]+)\)")
 
 

@@ -1,7 +1,7 @@
 ---
 Document ID: SITEMAP
 Title: "Minder Academy - Complete Sitemap"
-Last Updated: 2026-10-15
+Last Updated: 2026-10-27
 Status: Complete
 Difficulty: Beginner
 Tags: ['maintenance', 'navigation']
@@ -17,6 +17,7 @@ lockstep with the file tree by the sitemap_claims_check gate (SC-00/01).
 ## Getting Started
 
 - [README](../../README.md) - Project overview and quick start
+- [README-REFERENCE](../../README-REFERENCE.md) - Detailed repository and deployment reference
 - [index](../index.md) - Documentation site home and landing page
 - [0000-LEARNING-PATH](0000-LEARNING-PATH.md) - Curriculum roadmap and study paths
 - [VOLUME-GUIDE](VOLUME-GUIDE.md) - Phase-by-phase overview and recommended routes
@@ -818,8 +819,8 @@ build's written walkthroughs live inside the lessons themselves - see the
 ## Statistics
 
 ```text
-Total markdown files: 574
-  docs/: 520, experiments/: 48, configs/: 4, repo root: 2
+Total repository files: 627
+  docs/: 520, experiments/: 48, configs/: 4, repo root: 3
 Phases: 7
 Learning modules (topics): 33
 Phase files (lessons, guides, assessments, topic README/PREREQUISITES): 293
