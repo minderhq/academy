@@ -201,7 +201,7 @@ Set-Location "$HOME\academy"
 Create the same virtual environment on any platform; uv downloads Python 3.13
 if it is missing:
 
-```console
+```bash
 uv venv --python 3.13
 ```
 
@@ -218,7 +218,7 @@ source .venv/bin/activate
 .\.venv\Scripts\Activate.ps1
 ```
 
-```bat
+```text
 :: Windows Command Prompt
 .venv\Scripts\activate.bat
 ```

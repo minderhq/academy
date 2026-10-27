@@ -226,7 +226,7 @@ Set-Location "$HOME\academy"
 Create the virtual environment with Python 3.13; uv downloads the interpreter
 if it is missing:
 
-```console
+```bash
 uv venv --python 3.13
 ```
 
@@ -243,7 +243,7 @@ source .venv/bin/activate
 .\.venv\Scripts\Activate.ps1
 ```
 
-```bat
+```text
 :: Windows Command Prompt
 .venv\Scripts\activate.bat
 ```
