@@ -201,14 +201,6 @@ If you do not have uv yet, install it using the
 uv run --no-project --with ollama python my_first_ai.py
 ```
 
-If you already activated a virtual environment and prefer pip, install the
-library into that environment, then run the script there:
-
-```bash
-python -m pip install ollama
-python my_first_ai.py
-```
-
 ### Congratulations!
 You just built your first AI application!
 
@@ -356,9 +348,6 @@ You're now ready for the full learning journey!
 ```bash
 # Recommended: run with Ollama available in an isolated environment
 uv run --no-project --with ollama python my_first_ai.py
-
-# If you use an activated virtual environment, install into that environment
-python -m pip install ollama
 ```
 
 ---

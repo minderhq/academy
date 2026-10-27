@@ -230,14 +230,6 @@ If uv is not installed, follow the
 uv run --no-project --with requests python hello_llm.py
 ```
 
-If you already activated a virtual environment and prefer pip, install
-`requests` into that environment and run the script there:
-
-```bash
-python -m pip install requests
-python hello_llm.py
-```
-
 ---
 
 ## Step 7: Understanding Prompts
