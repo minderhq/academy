@@ -51,7 +51,7 @@ Minder Academy/
 │   ├── enterprise-solutions/         # Solution docs
 │   ├── diagrams/                     # Architecture diagrams
 │   └── index.md                      # Site landing page
-├── experiments/                       # Experiment files (47)
+├── experiments/                       # 47 experiments + TEMPLATE.md
 ├── overrides/                         # Theme overrides
 └── scripts/                           # Utility scripts
 ```

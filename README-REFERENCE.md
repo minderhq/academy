@@ -166,7 +166,7 @@ After completing Minder Academy, you will be able to:
 | Challenge | Minder Academy Solution |
 |:----------:|:----------------------:|
 | 💸 **AI infrastructure is expensive** | Run production-grade AI on affordable hardware or modest cloud instances |
-| 📚 **Documentation is scattered** | **625 files** in one organized, cross-referenced repository |
+| 📚 **Documentation is scattered** | **575 indexed content files** across the curriculum, experiments, and reference configs |
 | 🎯 **Learning gaps exist** | Complete curriculum from infrastructure to agentic systems |
 | 📝 **Theory without practice** | **33 PRACTICE files** with runnable solutions, **47 experiments** |
 | 🗺️ **No clear path forward** | **7 phases**, **3 learning tracks**, progress tracking built-in |
@@ -180,7 +180,7 @@ After completing Minder Academy, you will be able to:
 - **33 Technical Modules** with detailed documentation
 - **33 PRACTICE Files** with complete, runnable solutions
 - **33 QUIZ Files** for knowledge verification
-- **47 Experiment Files** for hands-on validation
+- **47 experiments** for hands-on validation (plus the experiment template)
 
 ### 🏗️ Production-Ready Infrastructure
 - Docker Compose reference stack (vLLM inference + Qdrant vector DB)
@@ -191,8 +191,8 @@ After completing Minder Academy, you will be able to:
 ### 📚 Rich Learning Resources
 - **15 hands-on labs** with 15 worked solutions (LAB-000 setup + LAB-001 to LAB-014)
 - **15 tutorials** with step-by-step instructions
-- **23 project files** for capstone projects (incl. section overview)
-- **81 cheat sheets** for quick reference (incl. section overview)
+- **23 project-area Markdown files:** 7 capstones, 12 reusable templates, 3 setup guides, and the section index
+- **80 cheat sheets:** 73 tool references and 7 volume quick references, plus the section index
 
 ### 🔧 Real-World Applications
 - Vector database implementation guides
@@ -834,10 +834,10 @@ AI agent implementations:
 
 ## Experiments
 
-Each technical document has an associated experiment file for hands-on validation.
+Experiments provide hands-on validation for selected technical topics.
 
 <details>
-<summary><b>🔬 47 Experiment Files</b></summary>
+<summary><b>🔬 47 Experiments</b></summary>
 
 **Infrastructure (8):**
 

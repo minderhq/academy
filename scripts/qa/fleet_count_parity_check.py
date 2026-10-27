@@ -47,7 +47,7 @@ FC-01  MI File Counts: every category row's count equals its disk
 FC-02  MI TOTAL row equals the sum of the category rows.
 FC-03  SITEMAP "## Experiments (N files: M experiments + 1 TEMPLATE)"
        header equals disk (N = all experiments/*.md, M = EXP_*.md).
-FC-04  README "N Experiment Files" summary equals disk EXP count.
+FC-04  README "N hands-on experiments" summary equals disk EXP count.
 FC-05  README-REFERENCE Experiments section lists every EXP file on
        disk in both directions (an orphan or ghost link is a finding).
 FC-06  each README-REFERENCE group header's "(N)" equals the EXP
@@ -91,7 +91,7 @@ MI_ROW = re.compile(r"^\| \*\*([^*]+)\*\* \| (\*?\*?)(\d+)\2 \|$", re.M)
 SITEMAP_HEADER = re.compile(
     r"^## Experiments \((\d+) files: (\d+) experiments \+ 1 TEMPLATE\)",
     re.M)
-README_SUMMARY = re.compile(r"\U0001F52C (\d+) Experiment Files")
+README_SUMMARY = re.compile(r"\U0001F52C (\d+) hands-on experiments")
 README_GROUP = re.compile(r"\*\*(.+?) \((\d+)\):\*\*")
 README_LINK = re.compile(r"\./experiments/(EXP_[A-Z_0-9]+)\.md")
 

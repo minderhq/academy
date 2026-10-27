@@ -52,7 +52,7 @@ Each phase has module overviews and assessments. Start with a module overview to
 
 ## Experiments
 
-**🔬 47 Experiment Files** — browse the [complete experiment listing, grouped by phase](https://github.com/minderhq/academy/blob/main/README-REFERENCE.md#experiments).
+**🔬 47 hands-on experiments** — browse the [complete experiment listing, grouped by phase](https://github.com/minderhq/academy/blob/main/README-REFERENCE.md#experiments).
 
 ## Repository layout
 

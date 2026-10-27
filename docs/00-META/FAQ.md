@@ -17,7 +17,7 @@ Tags: ['faq', 'llm', 'llmops']
 
 ### What is Minder Academy?
 
-Minder Academy is a seven-phase curriculum covering AI infrastructure, model internals, quantization, fine-tuning, RAG, and production deployment. The repository includes 520 indexed documents, 15 hands-on labs with 15 worked solutions, 47 experiment files, 15 tutorials, and 80 cheat sheets. Browse the [master index](MASTER-INDEX.md) or jump directly to [labs](../learning-resources/labs/README.md), [tutorials](../learning-resources/tutorials/README.md), and [cheat sheets](../learning-resources/cheat-sheets/README.md).
+Minder Academy is a seven-phase curriculum covering AI infrastructure, model internals, quantization, fine-tuning, RAG, and production deployment. The curriculum contains 520 Markdown documents, 15 hands-on labs with 15 worked solutions, 47 experiments (plus a template), 15 tutorials, and 80 cheat sheets. Browse the [master index](MASTER-INDEX.md) or jump directly to [labs](../learning-resources/labs/README.md), [tutorials](../learning-resources/tutorials/README.md), and [cheat sheets](../learning-resources/cheat-sheets/README.md).
 
 ### Who is this for?
 

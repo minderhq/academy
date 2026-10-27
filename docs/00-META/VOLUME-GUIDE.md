@@ -501,7 +501,7 @@ Minder Academy/docs/
     └── VOLUME-7-Production-Mastery.md
 
 Minder Academy/
-└── experiments/                 # Practical experiments (47 files)
+└── experiments/                 # 47 practical experiments + TEMPLATE.md
 ```
 
 ---

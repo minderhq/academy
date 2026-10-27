@@ -820,6 +820,9 @@ build's written walkthroughs live inside the lessons themselves - see the
 
 The total covers these four indexed content inventories; it excludes source
 code, workflows, and the generated `site/` build output.
+Directory counts for tutorials, labs, projects, and cheat sheets include their
+section README files. Experiment counts exclude `TEMPLATE.md`, which is shown
+separately.
 
 ```text
 Total indexed content files: 575
