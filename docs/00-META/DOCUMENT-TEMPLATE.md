@@ -1,7 +1,7 @@
 ---
 Document ID: DOCUMENT-TEMPLATE
 Title: "Minder Academy Document Template Standard"
-Last Updated: 2026-10-04
+Last Updated: 2026-10-27
 Status: Complete
 Difficulty: Beginner
 Tags: ['maintenance', 'template']
@@ -43,6 +43,13 @@ Documents may add fields beyond the core set (Phase, Module, Estimated Time,
 Prerequisites, Related, Tags, Hardware, Software, Category). Extended fields
 are optional; the five core fields are the only requirement for a document to
 be considered valid.
+
+When a document includes `Estimated Time`, treat it as the learner's total
+study budget for the required material: reading, exercises, setup, and hands-on
+work. It is not a reading-time prediction. State a single duration in
+frontmatter for platform scheduling; describe optional stretch work separately
+so learners can plan the required path without guessing what the estimate
+covers.
 
 ### Scope
 
