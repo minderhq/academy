@@ -308,30 +308,27 @@ Use **[PROGRESS-TRACKER.md](PROGRESS-TRACKER.md)** to:
 - Domain/hosting (for production deployment)
 - Paid APIs (for some labs, alternatives provided)
 
-### Estimated costs
+### How should I estimate costs?
 
-**Hardware (one-time):**
+There is no fixed course fee, and hardware and cloud prices vary by region,
+GPU type, availability, and provider. The curriculum's study-hour estimate is
+not the same as GPU runtime: many lessons run on CPU or use a GPU only for a
+short exercise.
 
-- Minimum: $500-1000 (used GPU + basic setup)
-- Recommended: $2000-4000 (RTX 3060-4090 + good components)
-- Ideal: $5000+ (multi-GPU, Threadripper, lots of RAM)
+For a useful estimate, list the GPU exercises you plan to run, estimate their
+active GPU hours, and multiply by the selected instance's current rate. Add
+storage, data transfer, taxes, and electricity where applicable. Shut down
+cloud instances when idle and check whether attached storage continues to bill.
 
-**Cloud GPUs (if needed):**
+Check live pricing before committing to a provider:
 
-- Google Colab Pro: $10/month
-- RunPod: $0.20-1.00/hour
-- Lambda Labs: $0.60-2.00/hour
-- AWS/Paperspace: Similar pricing
+- [Google Colab plans](https://colab.research.google.com/signup)
+- [Runpod GPU pricing](https://www.runpod.io/pricing)
+- [Lambda Cloud billing and pricing](https://docs.lambda.ai/public-cloud/billing/)
+- [AWS EC2 pricing](https://aws.amazon.com/ec2/pricing/)
 
-**Estimate for Fast Track:**
-
-- With own hardware: $0 (plus electricity)
-- With cloud GPUs: $200-500
-
-**Estimate for Complete Mastery:**
-
-- With own hardware: $0 (plus electricity)
-- With cloud GPUs: $500-1500
+Local hardware costs are best estimated from current prices in your region;
+include power consumption and any upgrades needed for the specific lab.
 
 ---
 
