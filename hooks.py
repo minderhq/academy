@@ -189,6 +189,10 @@ def on_post_build(config, **kwargs):
     if reference.is_file():
         shutil.copy2(reference, site / "README-REFERENCE.md")
         copied.append("README-REFERENCE.md")
+    license_file = root / "LICENSE"
+    if license_file.is_file():
+        shutil.copy2(license_file, site / "LICENSE")
+        copied.append("LICENSE")
     # robots.txt for the crawler entry point: allow all + point at the
     # sitemap.xml mkdocs itself emits into site/. Generated here rather than
     # shipped as docs/robots.txt - mkdocs copies non-md docs/ files verbatim,

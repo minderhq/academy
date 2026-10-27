@@ -819,7 +819,7 @@ build's written walkthroughs live inside the lessons themselves - see the
 ## Statistics
 
 ```text
-Total repository files: 627
+Total repository files: 575
   docs/: 520, experiments/: 48, configs/: 4, repo root: 3
 Phases: 7
 Learning modules (topics): 33

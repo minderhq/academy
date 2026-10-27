@@ -1506,7 +1506,7 @@ SOFTWARE.
 
 *Last Updated: 2026-10-27*
 
-*627 Repository Files | 33 Technical Modules | 7 Learning Phases*
+*575 Repository Files | 33 Technical Modules | 7 Learning Phases*
 
 [![License](https://img.shields.io/badge/License-MIT-yellow?style=flat-square)](LICENSE)
 [![Contact](https://img.shields.io/badge/Contact-FAQ-blue?style=flat-square)](./docs/00-META/FAQ.md)

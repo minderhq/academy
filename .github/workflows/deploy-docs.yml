@@ -11,6 +11,7 @@ on:
       - "gh_slugify.py"
       - "README.md"
       - "README-REFERENCE.md"
+      - "LICENSE"
       # hooks.py copies experiments/ and configs/ verbatim into site/ after
       # the build - they are live site content (served as raw .md/.yml), so
       # changes to them must trigger the deploy like any other site face

@@ -14,9 +14,9 @@ site_dir: site
 hooks:
   - hooks.py
 
-# Corpus docs link to repo-root companion material (experiments/, configs/,
-# README.md and README-REFERENCE.md) that live outside docs/. hooks.py copies
-# them into site/ after the build so these links resolve on the deployed site.
+# Corpus docs and root README pages link to repo-root companion material
+# (experiments/, configs/, README files, LICENSE) outside docs/. hooks.py
+# copies them into site/ after the build so links resolve on the deployed site.
 # MkDocs must not flag them; the QA linkcheck and casecheck validate the source.
 validation:
   links:
