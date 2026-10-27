@@ -1,7 +1,7 @@
 ---
 Document ID: CHEAT-SHEET-034
 Title: "CHEAT-SHEET-034: SGLang RadixAttention Serving"
-Last Updated: 2026-10-11
+Last Updated: 2026-10-27
 Status: Complete
 Difficulty: Advanced
 Tags: ['cheatsheet', 'llmops', 'serving', 'sglang']
@@ -93,7 +93,7 @@ Code-heavy or templated text accepts well; high-temperature creative text can en
 
 | failure | lesson |
 |---|---|
-| Install sglang into the training venv | the hard stack pins (torch 2.13.0, sglang-kernel, flashinfer) collide - fresh environment, do not fight the pins |
+| PyTorch / kernel dependency conflict during install | The compiled kernel stack must match the selected release; use a fresh environment and the release-matched install command. |
 | Benchmark with shared prompts and the cache on | identical prompts become hits - you measure the generator's repetitiveness; random-input comparisons need `--disable-radix-cache` |
 | Two constraint params in one request | the triple is exclusive - exactly one, else a 400 |
 | Enable speculation on creative sampling | acceptance 0.3 lands 0.81x - slower than the plain engine |
@@ -110,8 +110,8 @@ Code-heavy or templated text accepts well; high-temperature creative text can en
 
 | symptom | cause | fix |
 |---|---|---|
-| `torch==2.13.0 is not installed` at install | stack pins collide with your venv | fresh environment - do not fight the pins |
-| CUDA 12 driver, image exits immediately | `v0.5.21-cu130` needs CUDA 13 | `dev-cu12` (the frozen CUDA 12 line) or upgrade the driver |
+| PyTorch / kernel dependency conflict at install | SGLang's compiled stack does not match the active venv | fresh environment; use the release-matched install command |
+| CUDA 12 driver, image exits immediately | Current SGLang images require CUDA 13 | upgrade the driver, or use the historical `v0.5.19-cu129` image only when CUDA 12 support is required |
 | OOM at startup | mem-fraction-static too high for weights + graphs | drop to 0.8, smaller `--context-length`, check `nvidia-smi` |
 | Latency rose after enabling speculation | low acceptance on your text distribution | measure acceptance; disable on creative sampling |
 | Benchmark numbers impossibly good | radix cache hit on repeated prompts | `--disable-radix-cache` for random-input comparisons |

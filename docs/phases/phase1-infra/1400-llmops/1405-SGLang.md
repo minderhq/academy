@@ -3,7 +3,7 @@ Document ID: 1405
 Title: "1405: SGLang RadixAttention Serving"
 Phase: 1
 Module: 1400
-Last Updated: 2026-10-17
+Last Updated: 2026-10-27
 Status: Complete
 Difficulty: Advanced
 Estimated Time: 4 hours
@@ -128,23 +128,21 @@ Two rules the tree imposes: the cache is **exact** (a hit requires a true token-
 ## Installation
 
 ```bash
-# PyPI wheel (Linux + CUDA; Python >= 3.10). sglang pins its stack hard —
-# as of 0.5.21 it wants torch==2.13.0, sglang-kernel, flashinfer and
-# flash-attn 4, so install into a fresh environment, not your training venv.
-uv pip install "sglang[all]"
+# Current SGLang release (Linux + CUDA 13; Python >= 3.11).
+# Install into a fresh environment because its compiled kernel stack is version-coupled.
+uv pip install --prerelease=allow "sglang==0.5.22"
 
 # Verify
 python -c "import sglang; print(sglang.__version__)"
 ```
 
 ```bash
-# Docker is the reproducible path — pin a versioned tag, not latest:
-#   v0.5.21-cu130   current release line (CUDA 13, Hopper/Blackwell)
-#   dev-cu12        frozen final CUDA 12 build (Ampere and older drivers)
-docker pull lmsysorg/sglang:v0.5.21-cu130
+# Docker is the reproducible path — pin a versioned tag, not latest.
+# v0.5.22 is the current NVIDIA CUDA 13 release.
+docker pull lmsysorg/sglang:v0.5.22
 ```
 
-The hard pins are deliberate: the engine's kernels (`sglang-kernel`, flashinfer) are compiled against specific torch/CUDA pairs. On an 11GB-class single GPU this lesson stays at `--tp 1`; larger topologies (`--tp 2/4/8`, `--dp`, expert parallelism) follow the same flags.
+The hard pins are deliberate: the engine's kernels (`sglang-kernel`, flashinfer) are compiled against specific torch/CUDA pairs. Follow the selected release's install matrix rather than reusing dependencies from a training environment. On an 11GB-class single GPU this lesson stays at `--tp 1`; larger topologies (`--tp 2/4/8`, `--dp`, expert parallelism) follow the same flags.
 
 ## Launching the Server
 
@@ -369,7 +367,7 @@ spec:
         accelerator: nvidia   # must match the GPU node label (see 1301)
       containers:
       - name: sglang
-        image: lmsysorg/sglang:v0.5.21-cu130   # pinned release, not latest
+        image: lmsysorg/sglang:v0.5.22   # pinned NVIDIA CUDA 13 release
         args:
           - --model-path
           - Qwen/Qwen3-8B-AWQ   # ungated pre-quantized AWQ
@@ -426,8 +424,8 @@ Measure on your own hardware, with your own prompt distribution, both with and w
 
 | Symptom | Cause | Fix |
 |---------|-------|-----|
-| `torch==2.13.0 is not installed` at install | sglang's hard stack pins collide with your training venv | fresh environment; do not fight the pins |
-| CUDA 12 driver, image exits immediately | `v0.5.21-cu130` needs CUDA 13 | `dev-cu12` (frozen CUDA 12 line) or upgrade the driver |
+| PyTorch / kernel dependency conflict at install | SGLang's compiled stack does not match the active venv | fresh environment; use the version-matched command from the selected release |
+| CUDA 12 driver, image exits immediately | Current SGLang images require CUDA 13 | Upgrade to a CUDA 13-compatible driver, or use the historical `v0.5.19-cu129` image only when CUDA 12 support is required |
 | OOM at startup | `mem-fraction-static` too high for weights + graphs | drop to 0.8; smaller `--context-length`; check `nvidia-smi` |
 | Latency *rose* after enabling speculation | low acceptance rate on your text distribution | 4202's rule: measure acceptance; disable on creative sampling |
 | Benchmark numbers impossibly good | radix cache hit on repeated prompts | `--disable-radix-cache` for random-input comparisons |
@@ -444,7 +442,7 @@ SGLang is the serving engine whose organizing idea is reuse: RadixAttention keep
 
 - SGLang documentation — docs.sglang.io (server arguments, offline engine API, frontend tutorial, structured outputs, production metrics)
 - Zheng et al., 2023 — *SGLang: Efficient Execution of Structured Language Model Programs* (RadixAttention, SGVM)
-- PyPI `sglang` 0.5.21 (stack pins, extras) · Docker Hub `lmsysorg/sglang` (v0.5.21-cu130, dev-cu12)
+- [SGLang v0.5.22 release](https://github.com/sgl-project/sglang/releases/tag/v0.5.22) (Python and install command) · Docker Hub `lmsysorg/sglang` (`v0.5.22`; the CUDA 12.9 line ended at `v0.5.19-cu129`)
 
 ### Related Minder Academy Documents
 
