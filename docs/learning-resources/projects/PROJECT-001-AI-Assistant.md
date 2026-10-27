@@ -907,19 +907,23 @@ if __name__ == "__main__":
 > its socket. That access is effectively host-administrator access. The code
 > below limits each child container, but it does not make the Docker socket or
 > this service safe to expose to untrusted users. Keep the service private on
-> the Compose network, use a dedicated disposable host for untrusted prompts,
-> and add authentication, rate limits, execution timeouts, and output limits
-> before enabling these endpoints for other users. This sample is not a
-> multi-tenant sandbox.
+> the Compose network and use a dedicated disposable host for untrusted prompts.
+> This example enforces per-run time, memory, CPU, process, and log-size limits,
+> but it has no authentication or request-rate limiting and is not a
+> multi-tenant sandbox. Add those controls and review the full threat model
+> before enabling it for other users.
+> The execution deadline uses the Docker SDK's [`Container.wait(timeout=...)`](https://docker-py.readthedocs.io/en/stable/containers.html#docker.models.containers.Container.wait)
+> request timeout; per-container log rotation uses Docker's [`json-file` logging options](https://docs.docker.com/engine/logging/drivers/json-file/).
 > Review Docker's [rootless mode](https://docs.docker.com/engine/security/rootless/)
 > before adapting this for anything beyond a local learning environment.
 
 ```python
 # ~/ai-assistant/services/tools/tool_executor.py
-from fastapi import FastAPI, HTTPException
-from pydantic import BaseModel
+from fastapi import FastAPI
+from pydantic import BaseModel, Field
 from typing import Any
 import docker
+import requests
 import shlex
 import tempfile
 import os
@@ -929,10 +933,65 @@ app = FastAPI(title="Tool Executor")
 docker_client = docker.from_env()
 
 class ToolRequest(BaseModel):
-    query: str
+    query: str = Field(min_length=1, max_length=65536)
+
+MAX_OUTPUT_BYTES = 64 * 1024
+EXECUTION_TIMEOUT_SECONDS = 20
+
+def run_sandboxed(
+    command: list[str],
+    *,
+    memory_limit: str,
+    cpu_quota: int,
+    pids_limit: int,
+    tmpfs_size: str,
+    volumes: dict[str, dict[str, str]] | None = None,
+    environment: dict[str, str] | None = None,
+) -> dict[str, Any]:
+    """Run one argv command in a short-lived, resource-limited container."""
+    container = docker_client.containers.run(
+        "python:3.13-slim",
+        command,
+        detach=True,
+        user="65534:65534",
+        read_only=True,
+        cap_drop=["ALL"],
+        security_opt=["no-new-privileges:true"],
+        pids_limit=pids_limit,
+        tmpfs={"/tmp": f"rw,noexec,nosuid,size={tmpfs_size}"},
+        mem_limit=memory_limit,
+        cpu_period=100000,
+        cpu_quota=cpu_quota,
+        network_disabled=True,
+        volumes=volumes or {},
+        environment=environment or {},
+        log_config=docker.types.LogConfig(
+            type="json-file",
+            config={"max-size": "64k", "max-file": "1"},
+        ),
+    )
+
+    try:
+        try:
+            exit_code = container.wait(timeout=EXECUTION_TIMEOUT_SECONDS)["StatusCode"]
+        except requests.exceptions.ReadTimeout:
+            container.kill()
+            return {
+                "success": False,
+                "error": f"Execution timed out after {EXECUTION_TIMEOUT_SECONDS} seconds",
+            }
+
+        output = container.logs(stdout=True, stderr=True) or b""
+        truncated = len(output) > MAX_OUTPUT_BYTES
+        output_text = output[:MAX_OUTPUT_BYTES].decode("utf-8", errors="replace")
+        if truncated:
+            output_text += "\n[output truncated at 64 KiB]"
+        return {"success": exit_code == 0, "output": output_text}
+    finally:
+        container.remove(force=True)
 
 def execute_python_code(code: str) -> dict[str, Any]:
-    """Execute Python code in sandbox"""
+    """Execute Python code in a resource-limited child container."""
 
     with tempfile.NamedTemporaryFile(mode='w', suffix='.py', delete=False) as f:
         f.write(code)
@@ -941,28 +1000,15 @@ def execute_python_code(code: str) -> dict[str, Any]:
     try:
         # The child container runs as an unprivileged UID and must be able to read it.
         os.chmod(temp_file, 0o644)
-        # Run with no network, no writable root filesystem, and bounded resources.
-        result = docker_client.containers.run(
-            "python:3.13-slim",
+        return run_sandboxed(
             ["python", "/app/code.py"],
-            volumes={temp_file: {'bind': '/app/code.py', 'mode': 'ro'}},
-            user="65534:65534",
-            read_only=True,
-            cap_drop=["ALL"],
-            security_opt=["no-new-privileges:true"],
-            pids_limit=64,
-            tmpfs={"/tmp": "rw,noexec,nosuid,size=64m"},
-            mem_limit='512m',
-            cpu_period=100000,
+            memory_limit="512m",
             cpu_quota=50000,
-            network_disabled=True,
-            remove=True,
-            stdout=True,
-            stderr=True,
+            pids_limit=64,
+            tmpfs_size="64m",
+            volumes={temp_file: {'bind': '/app/code.py', 'mode': 'ro'}},
             environment={"PYTHONDONTWRITEBYTECODE": "1"},
         )
-
-        return {"success": True, "output": result.decode("utf-8", errors="replace")}
 
     except Exception as e:
         return {"success": False, "error": str(e)}
@@ -987,40 +1033,26 @@ def execute_shell_command(command: str) -> dict[str, Any]:
 
     try:
         # No host files are mounted; the child has no network or Linux capabilities.
-        result = docker_client.containers.run(
-            "python:3.13-slim",
+        return run_sandboxed(
             cmd_parts,
-            user="65534:65534",
-            read_only=True,
-            cap_drop=["ALL"],
-            security_opt=["no-new-privileges:true"],
-            pids_limit=32,
-            tmpfs={"/tmp": "rw,noexec,nosuid,size=16m"},
-            mem_limit='128m',
-            cpu_period=100000,
+            memory_limit="128m",
             cpu_quota=25000,
-            network_disabled=True,
-            remove=True,
-            stdout=True,
-            stderr=True,
+            pids_limit=32,
+            tmpfs_size="16m",
         )
-
-        return {"success": True, "output": result.decode("utf-8", errors="replace")}
 
     except Exception as e:
         return {"success": False, "error": str(e)}
 
+# Use sync handlers here so FastAPI runs blocking Docker SDK calls in its thread pool.
 @app.post("/tools/run_code")
-async def run_python_tool(request: ToolRequest):
+def run_python_tool(request: ToolRequest):
     """Execute Python code"""
 
-    # Extract code from query
-    code = request.query  # In production, parse code properly
-
-    return execute_python_code(code)
+    return execute_python_code(request.query)
 
 @app.post("/tools/shell_command")
-async def run_shell_tool(request: ToolRequest):
+def run_shell_tool(request: ToolRequest):
     """Execute shell command"""
 
     return execute_shell_command(request.query)
