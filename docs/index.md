@@ -67,8 +67,11 @@ through its phases:
 ## How to Work Through a Lesson
 
 1. Read the module README first - it states prerequisites and the time budget.
-2. Run every code fence yourself; the outputs in the text are the canonical
-   runs and your environment should reproduce them.
+2. Check a lesson's prerequisites before running its commands or examples.
+   Some code fences are partial snippets or configuration samples rather than
+   standalone programs; review commands that create, change, or delete
+   resources before executing them. Treat shown output as a reference because
+   versions, hardware, data, and model settings can change the result.
 3. Close each module with its assessment: the practice set for hands-on work,
    the quiz for retrieval, and the checkpoint to log progress in
    [PROGRESS-TRACKER](00-META/PROGRESS-TRACKER.md).
