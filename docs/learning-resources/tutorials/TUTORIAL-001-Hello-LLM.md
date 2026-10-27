@@ -1,7 +1,7 @@
 ---
 Document ID: TUTORIAL-001
 Title: "TUTORIAL-001: Hello LLM! - Your First AI Model"
-Last Updated: 2026-10-22
+Last Updated: 2026-10-27
 Status: Complete
 Difficulty: Beginner
 Estimated Time: 30 minutes
@@ -182,11 +182,6 @@ curl http://localhost:11434/api/chat -d '{
 
 Let's use Python to talk to the LLM!
 
-### Install requests:
-```bash
-uv pip install requests
-```
-
 ### Create `hello_llm.py`:
 ```python
 import requests
@@ -227,7 +222,19 @@ if __name__ == "__main__":
 ```
 
 ### Run it:
+
+If uv is not installed, follow the
+[Python environment setup guide](../../00-META/ENVIRONMENT-SETUP.md#step-3-python-environment-uv).
+
 ```bash
+uv run --no-project --with requests python hello_llm.py
+```
+
+If you already activated a virtual environment and prefer pip, install
+`requests` into that environment and run the script there:
+
+```bash
+python -m pip install requests
 python hello_llm.py
 ```
 
